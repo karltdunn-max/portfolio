@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Web Development – Karl Dunn</title>
+  <meta name="description" content="HTML web development, DOM manipulation, interface design, and how these concepts power the System Meltdown simulator's UI.">
+  <meta name="keywords" content="HTML, Web Development, DOM, CSS, JavaScript, UI Design, Front-End">
+  <meta property="og:title" content="HTML Web Development – Karl Dunn">
+  <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f1f2f 0, #050810 55%, #000000 100%);
+      font-family: Consolas, "Courier New", monospace;
+      color: #e6f1ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      backdrop-filter: blur(10px);
+      background: rgba(5, 10, 25, 0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #e6f1ff;
+      margin-right: 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(5,10,25,0.9);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    h1 { 
+      font-size: 2rem; 
+      margin-bottom: 0.5rem;
+      color: #00bcd4;
+    }
+    h2 { 
+      margin-top: 1.5rem;
+      color: #4fc3f7;
+      border-left: 4px solid #00bcd4;
+      padding-left: 12px;
+    }
+    p, li { 
+      font-size: 0.9rem; 
+      line-height: 1.7;
+      color: #b8d4e8;
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: #90caf9;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    code { 
+      background: rgba(0, 188, 212, 0.15);
+      color: #81d4fa;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      border: 1px solid rgba(0, 188, 212, 0.3);
+    }
+    ul {
+      margin: 1rem 0;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    strong {
+      color: #fff;
+    }
+    .highlight-box {
+      background: rgba(0, 188, 212, 0.1);
+      border-left: 4px solid #00bcd4;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <a href="landing_page.html">🌀 Home</a>
+    <a href="linux_project_page.html">🐧 Linux</a>
+    <a href="ansible_project_page.html">🅰️ Ansible</a>
+    <a href="splunk_project_page.html">🔍 Splunk</a>
+    <a href="tableau_project_page.html">📊 Tableau</a>
+    <a href="hadoop_project_page.html">🐘 Hadoop</a>
+    <a href="system_meltdown.html">🔥 System Meltdown</a>
+  </nav>
+</header>
+
+<div class="content">
+  <h1>HTML Web Development</h1>
+  <p class="subtitle">
+    The markup language that structures the System Meltdown interface, creates interactive dashboards, and powers every visual element in this portfolio.
+  </p>
+
+  <h2>How HTML Powers the System Meltdown Game</h2>
+  <p>
+    The entire System Meltdown simulator is built with HTML, CSS, and JavaScript — the same core technologies used in production web applications:
+  </p>
+  <ul>
+    <li><strong>Interactive nodes = clickable DOM elements</strong> (using <code>&lt;div&gt;</code> or <code>&lt;canvas&gt;</code>)</li>
+    <li><strong>Console output = dynamically generated HTML</strong> (appending <code>&lt;p&gt;</code> elements to a scrolling container)</li>
+    <li><strong>Game state = JavaScript objects</strong> managing health, score, and targets in real-time</li>
+    <li><strong>Visual feedback = CSS transitions and animations</strong> for hits, misses, and critical alerts</li>
+    <li><strong>Responsive layout = media queries and flexbox</strong> ensuring playability on any screen size</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p>
+      Every click in the game triggers an event handler — the same pattern used in enterprise dashboards, monitoring tools, and automation interfaces.
+    </p>
+  </div>
+
+  <h2>DOM Manipulation & Event Handling</h2>
+  <p>
+    In System Meltdown, when you click a node, the game executes:
+  </p>
+  <ul>
+    <li><code>document.getElementById('node-23').addEventListener('click', handleClick)</code></li>
+    <li><code>element.classList.add('hit')</code> or <code>.add('miss')</code></li>
+    <li><code>innerHTML += newLogEntry</code> to update the console</li>
+    <li><code>element.style.backgroundColor = 'red'</code> for critical state changes</li>
+  </ul>
+
+  <p>
+    This is identical to how production monitoring dashboards update status indicators, how ticketing systems refresh incident counts, and how automation tools display real-time logs.
+  </p>
+
+  <h2>HTML Structure = System Architecture</h2>
+  <p>
+    Just like Linux has a hierarchical file system (<code>/var/log/messages</code>), HTML has a Document Object Model (DOM):
+  </p>
+  <ul>
+    <li><code>&lt;html&gt;</code> = root directory (<code>/</code>)</li>
+    <li><code>&lt;body&gt;</code> = main system partition</li>
+    <li><code>&lt;div id="game-container"&gt;</code> = application namespace</li>
+    <li><code>&lt;canvas id="network-graph"&gt;</code> = graphical output (like <code>/dev/tty</code>)</li>
+    <li><code>&lt;div class="console-log"&gt;</code> = equivalent to <code>/var/log/</code></li>
+  </ul>
+
+  <p>
+    Navigating the DOM with JavaScript is like navigating the file system with <code>cd</code> and <code>find</code> — you traverse nodes, query selectors, and manipulate elements programmatically.
+  </p>
+
+  <h2>CSS Styling = Visual Configuration Management</h2>
+  <p>
+    The visual design of System Meltdown uses CSS the same way system configs use YAML or JSON:
+  </p>
+  <ul>
+    <li><code>.target-node { background: green; }</code> → healthy service</li>
+    <li><code>.forbidden-node { background: red; }</code> → protected system file</li>
+    <li><code>.idempotent-hit { opacity: 0.6; }</code> → safe re-run of a command</li>
+    <li><code>@keyframes pulse</code> → blinking alert (like a kernel panic or disk full warning)</li>
+  </ul>
+
+  <p>
+    CSS classes are like Ansible roles or Docker labels — reusable, declarative, and applied conditionally based on state.
+  </p>
+
+  <h2>JavaScript Logic = Automation & Event-Driven Architecture</h2>
+  <p>
+    The game's JavaScript engine mirrors real-world automation:
+  </p>
+  <ul>
+    <li><code>setInterval(checkHealth, 1000)</code> → periodic health checks (like cron jobs or systemd timers)</li>
+    <li><code>fetch('/api/logs')</code> → pulling data from external sources (like Splunk API or REST endpoints)</li>
+    <li><code>Promise.all()</code> → parallel execution (like <code>ansible --forks=10</code>)</li>
+    <li><code>try/catch</code> → error handling (like <code>|| echo "failed"</code> in Bash)</li>
+  </ul>
+
+  <p>
+    Event-driven programming in the browser is the same concept as event-driven architectures in distributed systems — triggers, handlers, and state transitions.
+  </p>
+
+  <h2>Building Landing Pages = Building Dashboards</h2>
+  <p>
+    This portfolio site itself is an HTML project. Every page uses:
+  </p>
+  <ul>
+    <li><strong>Semantic HTML</strong> (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>) for structure</li>
+    <li><strong>Responsive design</strong> (viewport meta tags, flexbox, grid) for mobile compatibility</li>
+    <li><strong>Accessibility</strong> (alt text, ARIA labels, semantic elements) for inclusive design</li>
+    <li><strong>Performance optimization</strong> (minified CSS, lazy-loaded images, external scripts from CDN)</li>
+  </ul>
+
+  <p>
+    The principles of building a landing page are the same as building an operations dashboard — clarity, usability, and real-time data presentation.
+  </p>
+
+  <h2>Why HTML Is the Universal Interface</h2>
+  <p>
+    Every tool in this portfolio has a web interface:
+  </p>
+  <ul>
+    <li><strong>Ansible Tower / AWX</strong> → HTML dashboard for playbook execution</li>
+    <li><strong>Hadoop Ambari</strong> → web UI for cluster management</li>
+    <li><strong>Splunk Web</strong> → search interface and dashboard builder</li>
+    <li><strong>Tableau Server</strong> → embedded visualizations in HTML</li>
+    <li><strong>System Meltdown</strong> → fully interactive HTML5 game</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p>
+      <strong>HTML is the language of interfaces.</strong> Whether it's an outage simulator, a monitoring dashboard, or an automation portal — if it runs in a browser, it's built with HTML, CSS, and JavaScript.
+    </p>
+  </div>
+
+  <h2>From Static Pages to Dynamic Systems</h2>
+  <p>
+    This portfolio started as static HTML tables. Now it includes:
+  </p>
+  <ul>
+    <li>Background music controls with JavaScript audio APIs</li>
+    <li>Smooth scrolling and anchor navigation</li>
+    <li>Hover effects and CSS transitions</li>
+    <li>Responsive grid layouts for project cards</li>
+    <li>A fully playable game engine</li>
+  </ul>
+
+  <p>
+    That evolution — from static markup to interactive application — is the same journey every DevOps engineer takes when building operational tools.
+  </p>
+
+  <p>
+    <strong>Everything in this portfolio — from the outage game to the project pages — is built on HTML.</strong> It's the foundation of modern web operations, dashboards, and automation interfaces.
+  </p>
+</div>
+</body>
+</html>

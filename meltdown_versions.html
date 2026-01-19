@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Meltdown — Revision History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     TERMINAL BOOT INTRO
+     ============================================================ -->
+<div class="boot-screen" id="bootScreen">
+  <pre id="bootText"></pre>
+</div>
+
+<!-- ============================================================
+     SERVER LAUNCHER BAR
+     ============================================================ -->
+<div class="server-launcher">
+  <a class="launcher-tile" href="index.html">🏠 Home</a>
+  <a class="launcher-tile" href="linux_project_page.html">🐧 Linux</a>
+  <a class="launcher-tile" href="meltdown_versions.html">🎮 Game Versions</a>
+  <a class="launcher-tile" href="ansible_project_page.html">🅰️ Ansible</a>
+  <a class="launcher-tile" href="remedy_project_page.html">🛠️ Remedy</a>
+  <a class="launcher-tile" href="splunk_project_page.html">🔍 Splunk</a>
+  <a class="launcher-tile" href="tableau_project_page.html">📊 Tableau</a>
+  <a class="launcher-tile" href="hadoop_project_page.html">🐘 Hadoop</a>
+</div>
+
+<main class="server-rack-bg">
+
+<div class="incident-float-layer">
+  <div class="incident-ticket">Linux Incident</div>
+  <div class="incident-ticket">Ansible Playbook Error</div>
+  <div class="incident-ticket">Splunk Alert</div>
+  <div class="incident-ticket">Remedy Ticket</div>
+  <div class="incident-ticket">Hadoop Node Warning</div>
+</div>
+
+
+<div class="offline-node">
+  <div class="offline-light"></div>
+  <span class="offline-label">SERVER OFFLINE — CRITICAL</span>
+</div>
+
+
+<!-- ============================================================
+     SKILL SET BUTTONS (TOP)
+     ============================================================ -->
+<section class="skill-links">
+  <h2>Explore Other Skill Sets</h2>
+
+  <div class="skill-grid">
+    <a class="skill-tile" href="index.html">🏠 Home</a>
+    <a class="skill-tile" href="ansible_project_page.html">🅰️ Ansible Automation</a>
+    <a class="skill-tile" href="remedy_project_page.html">🛠️ Remedy / ITSM</a>
+    <a class="skill-tile" href="splunk_project_page.html">🔍 Splunk Observability</a>
+    <a class="skill-tile" href="tableau_project_page.html">📊 Tableau Dashboards</a>
+    <a class="skill-tile" href="hadoop_project_page.html">🐘 Hadoop Ecosystem</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVISION HISTORY
+     ============================================================ -->
+<section class="revision-console">
+
+  <h1 class="rev-title">System Meltdown — Revision History</h1>
+  <p class="rev-subtitle">Patch notes, subsystem changes, and incident‑response improvements.</p>
+
+  <div class="rev-block">
+    <h2 class="rev-header">Version 1.0 — Initial Deployment</h2>
+    <ul>
+      <li>Core engine online: API Service + PROD Database simulation.</li>
+      <li>Basic forbidden node logic introduced.</li>
+      <li>Simple event console with timestamped notices.</li>
+      <li>First playable meltdown scenario.</li>
+    </ul>
+  </div>
+
+  <div class="rev-block">
+    <h2 class="rev-header">Version 2.0 — Incident Console Upgrade</h2>
+    <ul>
+      <li>Added live event feed with real‑time updates.</li>
+      <li>Introduced “Change Window” UI with reset + force complete.</li>
+      <li>Improved forbidden node detection and instant failure logic.</li>
+      <li>Enhanced visual feedback for pending vs forbidden states.</li>
+    </ul>
+  </div>
+
+  <div class="rev-block">
+    <h2 class="rev-header">Version 3.0 — Ops Dashboard Enhancements</h2>
+    <ul>
+      <li>Added subsystem glow effects and alert animations.</li>
+      <li>Improved state transitions for idempotent targets.</li>
+      <li>Refined console formatting for better readability.</li>
+      <li>Prepared architecture for future multi‑node meltdown scenarios.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     RACK FANS + LED PANEL
+     ============================================================ -->
+<div class="rack-effects">
+  <div class="fan fan-left"></div>
+  <div class="fan fan-right"></div>
+
+  <div class="led-panel">
+    <div class="led red"></div>
+    <div class="led green"></div>
+    <div class="led blue"></div>
+    <div class="led yellow"></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  System Meltdown Revision Console · Server‑Ops Edition
+</footer>
+
+<script>
+/* ============================================================
+   TERMINAL BOOT SEQUENCE TYPING EFFECT
+   ============================================================ */
+const bootLines = [
+  "Initializing System Meltdown Revision Console...",
+  "Loading subsystem registry...",
+  "Checking forbidden node policies...",
+  "Starting event console...",
+  "Boot sequence complete.",
+  "Launching dashboard..."
+];
+
+let index = 0;
+const bootText = document.getElementById("bootText");
+const bootScreen = document.getElementById("bootScreen");
+
+function typeLine() {
+  if (index < bootLines.length) {
+    bootText.textContent += bootLines[index] + "\n";
+    index++;
+    setTimeout(typeLine, 600);
+  } else {
+    setTimeout(() => {
+      bootScreen.style.opacity = "0";
+      setTimeout(() => bootScreen.remove(), 800);
+    }, 800);
+  }
+}
+
+typeLine();
+</script>
+
+</body>
+</html>

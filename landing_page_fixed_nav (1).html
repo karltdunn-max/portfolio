@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Karl Dunn – Technical Portfolio</title>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    [id] {
+      scroll-margin-top: 120px;
+    }
+
+    /* Technical Skills background */
+    #skills-section {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px 0;
+    }
+
+    /* Floating audio button */
+    #audioToggle {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-family: Verdana;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
+      z-index: 9999;
+    }
+
+    #audioToggle:hover {
+      background-color: #444444;
+    }
+
+    /* Resume button */
+    #resumeBtn {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: Verdana;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0px 0px 15px rgba(0, 188, 212, 0.5);
+      z-index: 9999;
+      transition: all 0.3s ease;
+    }
+
+    #resumeBtn:hover {
+      background-color: #0097a7;
+      box-shadow: 0px 0px 20px rgba(0, 188, 212, 0.8);
+      transform: translateY(-2px);
+    }
+
+    /* Navigation links hover effect */
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-family: Verdana;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body bgcolor="#F5F5F5">
+
+<!-- HEADER -->
+<table width="100%" border="0" cellspacing="0" cellpadding="20" bgcolor="#000000">
+  <tr>
+    <td align="center">
+      <font face="Verdana" color="white" size="6"><strong>Karl Dunn</strong></font><br>
+      <font face="Verdana" color="white" size="3">Application Support • Systems Integration • DevOps • Automation</font>
+    </td>
+  </tr>
+</table>
+
+<!-- NAVIGATION BAR -->
+<table width="100%" border="0" cellspacing="10" cellpadding="10" bgcolor="#333333">
+  <tr>
+    <td align="center"><a href="ansible_project_page.html" class="nav-link">Ansible</a></td>
+    <td align="center"><a href="hadoop_project_page.html" class="nav-link">Hadoop</a></td>
+    <td align="center"><a href="tableau_hero_design.html" class="nav-link">Tableau</a></td>
+    <td align="center"><a href="splunk_project_page.html" class="nav-link">Splunk</a></td>
+    <td align="center"><a href="remedy_project_page.html" class="nav-link">Remedy</a></td>
+    <td align="center"><a href="#htmlproj" class="nav-link">HTML Project</a></td>
+    <td align="center"><a href="linux_project_page.html" class="nav-link">Linux</a></td>
+  </tr>
+</table>
+
+<!-- HERO SECTION -->
+<table width="100%" border="0" cellspacing="0" cellpadding="30" bgcolor="white">
+  <tr>
+    <td align="center">
+      <font face="Verdana" size="6" color="black"><strong>Building Reliable Systems. Automating Everything.</strong></font><br><br>
+      <font face="Verdana" size="4" color="gray">Real-world engineering projects from enterprise environments.</font>
+    </td>
+  </tr>
+</table>
+
+<!-- TECHNICAL SKILLS SECTION -->
+<div id="skills-section">
+<table width="100%" border="0" cellspacing="20" cellpadding="20">
+  <tr>
+    <td align="center">
+      <font face="Verdana" size="5" color="black"><strong>Technical Skills</strong></font>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <table border="0" cellspacing="20" cellpadding="10" bgcolor="rgba(0,0,0,0.5)" style="border-radius:10px;">
+        <tr>
+
+          <td align="center">
+            <a href="ansible_project_page.html" style="text-decoration:none; color:white;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" height="50"><br>
+              <font face="Verdana">Ansible</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="hadoop_project_page.html" style="text-decoration:none; color:white;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg" height="50"><br>
+              <font face="Verdana">Hadoop</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="tableau_hero_design.html" style="text-decoration:none; color:white;">
+              <img src="Logo-Tableau--Streamline-Ionic-Filled.svg" height="50"><br>
+              <font face="Verdana">Tableau</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="splunk_project_page.html" style="text-decoration:none; color:white;">
+              <img src="Splunk--Streamline-Simple-Icons.svg" height="50"><br>
+              <font face="Verdana">Splunk</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="remedy_project_page.html" style="text-decoration:none; color:white;">
+              <img src="Footsteps--Streamline-Ionic-Filled.svg" height="50"><br>
+              <font face="Verdana">Remedy</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="linux_project_page.html" style="text-decoration:none; color:white;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="50"><br>
+              <font face="Verdana">Linux / Unix</font>
+            </a>
+          </td>
+
+          <td align="center">
+            <a href="#htmlproj" style="text-decoration:none; color:white;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="50"><br>
+              <font face="Verdana">HTML</font>
+            </a>
+          </td>
+
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
+
+<!-- PROJECTS SECTION -->
+<table width="100%" border="0" cellspacing="20" cellpadding="20" bgcolor="white">
+  <tr>
+    <td align="center">
+      <font face="Verdana" size="5" color="black"><strong>Real Projects I've Built</strong></font>
+    </td>
+  </tr>
+
+<tr id="ansible">
+  <td style="
+    border:1px solid #CCCCCC;
+    padding:20px;
+    background-image: url('ansible.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;">
+	
+      <font face="Verdana" size="4"><strong>Ansible Automation – Server Configuration, YAML, Inventory & Variables</strong></font><br><br>
+      <font face="Verdana" size="2">
+        • Automated Linux server provisioning<br>
+        • Reduced setup time from 45 minutes to 5 minutes<br>
+        • Managed users, packages, services, handlers<br>
+        • Built YAML playbooks with loops & templates<br><br>
+      </font>
+      <font face="Verdana" size="2" color="blue">
+        <a href="ansible_project_page.html" style="color: #00bcd4; font-weight: bold;">View Full Ansible Project →</a>
+      </font>
+    </td>
+  </tr>
+
+
+<tr id="hadoop">
+  <td style="border:1px solid #CCCCCC; padding:0;">
+
+    <!-- Image FIRST, slightly more extended height -->
+    <img src="hadoop.png" alt="Hadoop Image" 
+         style="width:100%; display:block; height:380px; object-fit:cover;">
+
+    <!-- Text BELOW the image, auto height (no empty space) -->
+    <div style="
+      background-color: rgba(10, 25, 80, 0.75);
+      padding: 20px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      font-weight: bold;
+      font-family: Verdana;
+      font-size: 14px;
+      line-height: 1.6;">
+
+      <div style="font-size:18px;"><strong>Hadoop Cluster Deployment</strong></div><br>
+      • Built a 3-node Hadoop cluster<br>
+      • Configured HDFS, YARN, MapReduce<br>
+      • Validated distributed storage<br><br>
+      <a href="hadoop_project_page.html" style="color: #00bcd4; font-weight: bold; text-decoration: none;">View Full Hadoop Project →</a>
+    </div>
+
+  </td>
+</tr>
+
+
+
+<tr id="tableau">
+  <td style="border:1px solid #CCCCCC; padding:0;">
+
+    <!-- Tableau image banner -->
+    <img src="tabluea.png" alt="Tableau Image" 
+         style="width:100%; display:block; height:420px; object-fit:cover;">
+
+    <!-- Text block below the image -->
+    <div style="
+      background-color: #FFFFFF;
+      padding: 20px;
+      box-sizing: border-box;
+      color: #000000;
+      font-family: Verdana, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: bold;">
+
+      <div style="font-size:18px;"><strong>Tableau Development & Dashboards</strong></div><br>
+      • Interactive dashboards & storytelling<br>
+      • Data blending & calculated fields<br>
+      • Publishing, permissions & extracts<br><br>
+      <a href="tableau_hero_design.html" style="color: #00bcd4; font-weight: bold; text-decoration: none;">View Full Tableau Project →</a>
+    </div>
+  </td>
+</tr>
+
+
+
+
+ <tr id="splunk">
+  <td style="
+    border:1px solid #CCCCCC;
+    padding:20px;
+    background-image: url('splunk.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;">
+	
+      <font face="Verdana" size="4"><strong>Splunk Monitoring & Incident Analysis</strong></font><br><br>
+      <font face="Verdana" size="2">
+        • Built SPL queries<br>
+        • Created dashboards for latency & failures<br>
+        • Reduced MTTR with pattern analysis<br><br>
+      </font>
+      <font face="Verdana" size="2" color="blue">
+        <a href="splunk_project_page.html" style="color: #00bcd4; font-weight: bold;">View Full Splunk Project →</a>
+      </font>
+    </td>
+  </tr>
+
+ <tr id="remedy">
+  <td style="border:1px solid #CCCCCC; padding:0;">
+
+    <!-- Remedy image banner -->
+    <img src="BMC Remedy.png" alt="Remedy Image" 
+         style="width:100%; display:block; height:420px; object-fit:cover;">
+
+    <!-- Text block below the image -->
+    <div style="
+      background-color: #FFFFFF;
+      padding: 20px;
+      box-sizing: border-box;
+      color: #000000;
+      font-family: Verdana, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: bold;">
+	  
+      <font face="Verdana" size="4"><strong>Remedy ITSM – Incident & Change Management</strong></font><br><br>
+      <font face="Verdana" size="2">
+        • Managed high-severity incidents<br>
+        • Documented RCA<br>
+        • Improved SLA compliance<br><br>
+      </font>
+      <a href="remedy_project_page.html" style="color: #00bcd4; font-weight: bold; text-decoration: none;">View Full Remedy Project →</a>
+    </div>
+  </td>
+</tr>
+
+<tr id="htmlproj">
+  <td style="
+    border:1px solid #CCCCCC;
+    padding:20px;
+    background-image: url('html.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;">
+	
+	
+      <font face="Verdana" size="4"><strong>HTML Website – Business Landing Page</strong></font><br><br>
+      <font face="Verdana" size="2">
+        • Built a complete landing page<br>
+        • Implemented navigation & hero banner<br>
+        • Reverse-engineered UI from screenshots<br><br>
+      </font>
+      <font face="Verdana" size="2" style="color: #ffb300; font-weight: bold;">
+        Coming Soon – Full Project Page in Development
+      </font>
+    </td>
+  </tr>
+
+<tr id="linux">
+  <td style="
+    border:1px solid #CCCCCC;
+    padding:20px;
+    background-image: url('linux%20background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;">
+    
+    <font face="Verdana" size="4"><strong>Linux / Unix Administration</strong></font><br><br>
+    <font face="Verdana" size="2">
+      • Shell scripting & automation<br>
+      • Systemd service management<br>
+      • Package management & troubleshooting<br><br>
+    </font>
+    <font face="Verdana" size="2" color="blue">
+      <a href="linux_project_page.html" style="color: #00bcd4; font-weight: bold;">View Full Linux Project →</a>
+    </font>
+  </td>
+</tr>
+
+
+
+</table>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" autoplay loop muted>
+  <source src="music loop.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FLOATING RESUME BUTTON -->
+<button id="resumeBtn" onclick="location.href='Resume_Page.html'">📄 View Resume</button>
+
+<!-- FLOATING AUDIO BUTTON -->
+<button id="audioToggle" onclick="toggleAudio()">🎵 Play Music</button>
+
+<script>
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('audioToggle');
+
+  function toggleAudio() {
+    if (audio.muted) {
+      audio.muted = false;
+      audio.play();
+      btn.innerText = "🔇 Mute Music";
+    } else {
+      audio.muted = true;
+      btn.innerText = "🎵 Play Music";
+    }
+  }
+</script>
+
+</body>
+</html>

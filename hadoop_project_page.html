@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hadoop Ecosystem — Karl Dunn</title>
+  <meta name="description" content="Hadoop cluster design, HDFS, YARN, ZooKeeper, and distributed systems engineering.">
+  <meta name="keywords" content="Hadoop, HDFS, YARN, ZooKeeper, Distributed Systems">
+  <meta property="og:title" content="Hadoop Ecosystem — Karl Dunn">
+  <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f1f2f 0, #050810 55%, #000000 100%);
+      font-family: Consolas, "Courier New", monospace;
+      color: #e6f1ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      backdrop-filter: blur(10px);
+      background: rgba(5, 10, 25, 0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+    }
+    nav a {
+      color: #e6f1ff;
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(5,10,25,0.9);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { margin-top: 1.5rem; }
+    p, li { font-size: 0.9rem; }
+    code { background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="hadoop_project_page.html">Hadoop</a>
+    <a href="linux_project_page.html">Linux</a>
+    <a href="splunk_project_page.html">Splunk</a>
+    <a href="tableau_project_page.html">Tableau</a>
+  </nav>
+</header>
+
+<div class="content">
+  <h1>Hadoop Ecosystem & Distributed Systems</h1>
+  <p class="subtitle">
+    Designing clusters where storage, compute, and coordination work together like a living organism.
+  </p>
+
+  <h2>Core Components I Work With</h2>
+  <ul>
+    <li><strong>HDFS</strong> — NameNode, DataNodes, replication, block placement</li>
+    <li><strong>YARN</strong> — ResourceManager, NodeManagers, scheduling</li>
+    <li><strong>ZooKeeper</strong> — Coordination, leader election, cluster health</li>
+    <li><strong>MapReduce / Spark</strong> — Distributed compute engines</li>
+  </ul>
+
+  <h2>How Hadoop Connects to System Meltdown</h2>
+  <p>
+    The simulator’s “forbidden nodes” and “mission‑critical nodes” mirror real Hadoop cluster behavior:
+  </p>
+
+  <ul>
+    <li>ZooKeeper = the brain (forbidden to touch)</li>
+    <li>NameNode = single point of truth</li>
+    <li>DataNodes = safe to operate on</li>
+    <li>YARN = orchestrator of distributed tasks</li>
+  </ul>
+
+  <p>
+    Your game already behaves like a distributed system — this page makes that connection explicit.
+  </p>
+</div>
+</body>
+</html>

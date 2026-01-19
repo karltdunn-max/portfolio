@@ -1,0 +1,330 @@
+/* ============================================================
+   SYSTEM MELTDOWN — REVISION HISTORY PAGE
+   ============================================================ */
+
+.revision-console {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.rev-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.rev-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.rev-block {
+  background: rgba(10, 20, 40, 0.75);
+  border: 1px solid rgba(74, 242, 161, 0.25);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 14px rgba(74, 242, 161, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.rev-header {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #4af2a1;
+}
+
+.rev-block ul {
+  margin-left: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Skill grid */
+
+.skill-links {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.skill-tile {
+  display: block;
+  padding: 1rem;
+  background: rgba(10, 20, 40, 0.75);
+  border: 1px solid rgba(74, 242, 161, 0.25);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 14px rgba(74, 242, 161, 0.25);
+}
+
+.skill-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 22px rgba(74, 242, 161, 0.7);
+}
+
+/* ============================================================
+   SERVER RACK BACKGROUND FOR GAME VERSION PAGE
+   ============================================================ */
+
+.server-rack-bg {
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/server-1867768_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SERVER LAUNCHER BAR
+   ============================================================ */
+
+.server-launcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(74, 242, 161, 0.25);
+}
+
+.launcher-tile {
+  padding: 0.6rem 1rem;
+  background: rgba(10, 20, 40, 0.75);
+  border: 1px solid rgba(74, 242, 161, 0.25);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 12px rgba(74, 242, 161, 0.25);
+}
+
+.launcher-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(74, 242, 161, 0.7);
+}
+
+/* ============================================================
+   SERVER RACK BACKGROUND
+   ============================================================ */
+.server-rack-bg {
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/server-1867768_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   TERMINAL BOOT INTRO
+   ============================================================ */
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: #4af2a1;
+  padding: 2rem;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+}
+
+.boot-screen pre {
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   SERVER LAUNCHER BAR
+   ============================================================ */
+.server-launcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(74, 242, 161, 0.25);
+}
+
+.launcher-tile {
+  padding: 0.6rem 1rem;
+  background: rgba(10, 20, 40, 0.75);
+  border: 1px solid rgba(74, 242, 161, 0.25);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 12px rgba(74, 242, 161, 0.25);
+}
+
+.launcher-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 18px rgba(74, 242, 161, 0.7);
+}
+
+/* ============================================================
+   RACK FANS + LED PANEL
+   ============================================================ */
+.rack-effects {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding: 0 2rem;
+}
+
+.fan {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(74, 242, 161, 0.4);
+  border-radius: 50%;
+  animation: spinFan 1.2s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes spinFan {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.led-panel {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.led {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+}
+
+.led.red { background: red; animation: blink 1.2s infinite; }
+.led.green { background: #00ff66; animation: blink 1.8s infinite; }
+.led.blue { background: #33aaff; animation: blink 2.4s infinite; }
+.led.yellow { background: #ffdd33; animation: blink 1.5s infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+
+/* ============================================================
+   SERVER OFFLINE — RED ALERT NODE
+   ============================================================ */
+
+.offline-node {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2rem auto;
+  padding: 1rem 1.4rem;
+  width: fit-content;
+  background: rgba(40, 0, 0, 0.65);
+  border: 1px solid rgba(255, 60, 60, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 18px rgba(255, 60, 60, 0.5);
+  backdrop-filter: blur(6px);
+}
+
+.offline-light {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: red;
+  box-shadow: 0 0 18px red;
+  animation: offlinePulse 0.8s infinite;
+}
+
+@keyframes offlinePulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.offline-label {
+  color: #ff4b6e;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   FLOATING INCIDENT TICKETS BACKGROUND
+   ============================================================ */
+
+.incident-float-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.incident-ticket {
+  position: absolute;
+  background: rgba(10, 20, 40, 0.75);
+  border: 1px solid rgba(74, 242, 161, 0.25);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: #4af2a1;
+  font-size: 0.8rem;
+  animation: floatTicket 12s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatTicket {
+  0% {
+    transform: translateY(120vh) translateX(-20vw) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(-20vh) translateX(20vw) rotate(10deg);
+  }
+}
+
+/* Random positions for variety */
+.incident-ticket:nth-child(1) { left: 10%; animation-delay: 0s; }
+.incident-ticket:nth-child(2) { left: 30%; animation-delay: 3s; }
+.incident-ticket:nth-child(3) { left: 55%; animation-delay: 6s; }
+.incident-ticket:nth-child(4) { left: 75%; animation-delay: 1s; }
+.incident-ticket:nth-child(5) { left: 85%; animation-delay: 4s; }
+
+
+
+.server-rack-bg {
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/server-1867768_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 2rem 0;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Splunk Engineering — Karl Dunn</title>
+  <meta name="description" content="Splunk dashboards, SPL searches, ingestion troubleshooting, and operational monitoring.">
+  <meta name="keywords" content="Splunk, SPL, Observability, Monitoring, Logging">
+  <meta property="og:title" content="Splunk Engineering — Karl Dunn">
+  <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a1f3a 0, #050810 55%, #000000 100%);
+      font-family: Consolas, "Courier New", monospace;
+      color: #e6f1ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      backdrop-filter: blur(10px);
+      background: rgba(5, 10, 25, 0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+    }
+    nav a {
+      color: #e6f1ff;
+      margin-right: 1rem;
+      text-decoration: none;
+    }
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(5,10,25,0.9);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { margin-top: 1.5rem; }
+    p, li { font-size: 0.9rem; }
+    code { background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="splunk_project_page.html">Splunk</a>
+    <a href="linux_project_page.html">Linux</a>
+    <a href="tableau_project_page.html">Tableau</a>
+    <a href="hadoop_project_page.html">Hadoop</a>
+  </nav>
+</header>
+
+<div class="content">
+  <h1>Splunk Engineering & Observability</h1>
+  <p class="subtitle">
+    Turning logs into insight, dashboards into decisions, and ingestion pipelines into reliable observability.
+  </p>
+
+  <h2>What I Do in Splunk</h2>
+  <ul>
+    <li>Build dashboards for performance, error rates, and service health</li>
+    <li>Create alerts with throttling and correlation logic</li>
+    <li>Troubleshoot ingestion issues using <code>metrics.log</code> and <code>splunkd.log</code></li>
+    <li>Optimize SPL searches for speed and cost</li>
+  </ul>
+
+  <h2>Example SPL Patterns</h2>
+  <p><code>index=prod error OR fail | stats count by host</code></p>
+  <p><code>index=web sourcetype=nginx | timechart span=5m avg(response_time)</code></p>
+
+  <h2>How Splunk Connects to the Portfolio</h2>
+  <p>
+    The System Meltdown console is inspired by Splunk’s event viewer — timestamped logs, severity levels, and real‑time updates.
+  </p>
+</div>
+</body>
+</html>
