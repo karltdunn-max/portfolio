@@ -1,13 +1,13 @@
 # 🖋️ Operation Incident Simulator (OASIS)
 ### Repository: `system_meltdown`
 
-**Operation Incident Simulator** is a high-fidelity technical demonstration of interactive web engineering. Built to showcase the "Ready Player One" aesthetic, this project proves the capability of building complex, real-time systems using vanilla JavaScript.
+**Operation Incident Simulator** is a high technical demonstration of interactive web engineering. Built to showcase game aesthetics, this project proves the capability of building complex, real-time systems.
 
 ---
 
 Turning a concept into a reality using AI-assisted development. 🚀
 
-I had a specific vision for a "Ready Player One" style game: a battle for incident resolution and process failures. 🖋️
+I had a specific vision for a game: a battle for incident resolution and process failures. 🖋️
 
 While I handled the concept, requirement changes, and overall design, I used Gemini / Claude to help me execute the "heavy lifting" of the JavaScript and physics engine. This project was a masterclass for me in how to direct AI to build complex interactive tools.
 
