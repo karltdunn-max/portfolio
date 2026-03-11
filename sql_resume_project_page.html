@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL / Database – Karl Dunn Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── ROOT VARS (mirrors the portfolio's neon-on-dark palette) ── */
+    :root {
+      --bg-primary:    #0a0a0f;
+      --bg-secondary:  #111118;
+      --bg-card:       #16161f;
+      --accent-cyan:   #00d4ff;
+      --accent-blue:   #0099ff;
+      --accent-purple: #8b5cf6;
+      --accent-green:  #00ff88;
+      --accent-orange: #ff6b35;
+      --text-primary:  #e8e8f0;
+      --text-secondary:#9090b0;
+      --border-subtle: rgba(0,212,255,0.15);
+      --glow-cyan:     0 0 20px rgba(0,212,255,0.4);
+      --glow-green:    0 0 20px rgba(0,255,136,0.4);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 3px; }
+
+    /* ── ANIMATED GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-cyan); }
+    .nav-badge {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 80px 40px 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 28px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(139,92,246,0.15));
+      border: 2px solid var(--accent-cyan);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--glow-cyan), inset 0 0 30px rgba(0,212,255,0.05);
+      position: relative;
+    }
+    .hero-icon img {
+      width: 64px;
+      height: 64px;
+      filter: drop-shadow(0 0 8px rgba(0,212,255,0.6));
+    }
+    .hero-icon::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 28px;
+      border: 1px solid rgba(0,212,255,0.2);
+      animation: pulse-ring 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+    .hero-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent-cyan);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 50%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 32px;
+      font-weight: 500;
+    }
+    .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .tag {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 1px;
+      border: 1px solid;
+    }
+    .tag-cyan  { border-color: var(--accent-cyan);   color: var(--accent-cyan);   background: rgba(0,212,255,0.07); }
+    .tag-green { border-color: var(--accent-green);  color: var(--accent-green);  background: rgba(0,255,136,0.07); }
+    .tag-purple{ border-color: var(--accent-purple); color: var(--accent-purple); background: rgba(139,92,246,0.07); }
+    .tag-orange{ border-color: var(--accent-orange); color: var(--accent-orange); background: rgba(255,107,53,0.07); }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .section-header h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-cyan) 0%, transparent 100%);
+      opacity: 0.3;
+    }
+    .section-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent-purple);
+      letter-spacing: 2px;
+    }
+
+    /* ── METRIC STRIP ── */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+    .metric {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .metric:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow-cyan);
+    }
+    .metric::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    }
+    .metric-value {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--accent-cyan);
+      display: block;
+    }
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── SKILL GRID ── */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glow-cyan);
+      border-color: rgba(0,212,255,0.4);
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .skill-card-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .skill-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .skill-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .skill-card li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .skill-card li::before {
+      content: '▸';
+      color: var(--accent-cyan);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    /* ── CODE BLOCK ── */
+    .code-showcase {
+      margin-bottom: 60px;
+    }
+    .code-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: -1px;
+    }
+    .code-tab {
+      padding: 10px 22px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      border: 1px solid var(--border-subtle);
+      border-bottom: none;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border-radius: 8px 8px 0 0;
+      transition: all 0.2s;
+    }
+    .code-tab.active {
+      background: var(--bg-card);
+      color: var(--accent-cyan);
+      border-color: rgba(0,212,255,0.3);
+    }
+    .code-block {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 0 12px 12px 12px;
+      padding: 32px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.84rem;
+      line-height: 1.8;
+      overflow-x: auto;
+      display: none;
+    }
+    .code-block.active { display: block; }
+    .sql-kw  { color: #ff79c6; font-weight: 700; }
+    .sql-fn  { color: #50fa7b; }
+    .sql-str { color: #f1fa8c; }
+    .sql-num { color: var(--accent-orange); }
+    .sql-cmt { color: #6272a4; font-style: italic; }
+    .sql-tbl { color: var(--accent-cyan); }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline { margin-bottom: 60px; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-left { text-align: right; }
+    .timeline-company {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .timeline-period {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+    }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      position: absolute;
+      left: 180px;
+      top: 34px;
+      transform: translateX(-50%);
+      box-shadow: var(--glow-cyan);
+    }
+    .timeline-right h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .timeline-right ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .timeline-right li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 500;
+    }
+    .timeline-right li .bullet {
+      color: var(--accent-green);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── CERT / TOOLS ROW ── */
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+    .tool-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .tool-pill:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+    .tool-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    /* ── PROFICIENCY BARS ── */
+    .proficiency { margin-bottom: 60px; }
+    .prof-item { margin-bottom: 18px; }
+    .prof-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .prof-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .prof-pct {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+    }
+    .prof-track {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .prof-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      box-shadow: 0 0 8px rgba(0,212,255,0.4);
+      animation: fill-in 1.2s ease-out forwards;
+      transform-origin: left;
+    }
+    @keyframes fill-in {
+      from { width: 0 !important; }
+    }
+
+    /* ── BACK BUTTON ── */
+    .back-section {
+      text-align: center;
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(139,92,246,0.1));
+      border: 1px solid var(--accent-cyan);
+      border-radius: 8px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      margin: 0 8px;
+    }
+    .back-btn:hover {
+      background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(139,92,246,0.2));
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .metrics { grid-template-columns: repeat(2,1fr); }
+      .skill-grid { grid-template-columns: repeat(2,1fr); }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .timeline-dot { display: none; }
+      .timeline-left { text-align: left; }
+      nav { padding: 12px 20px; }
+      main { padding: 40px 20px; }
+    }
+    @media (max-width: 600px) {
+      .metrics { grid-template-columns: repeat(2,1fr); }
+      .skill-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───── NAV ───── -->
+<nav>
+  <span class="nav-brand">Karl Dunn // Portfolio</span>
+  <div class="nav-links">
+    <a href="Resume_Page.html#skills-section">← Skills</a>
+    <a href="Resume_Page.html">Resume</a>
+    <a href="landing_page.html">Home</a>
+    <span class="nav-badge">SQL / DATABASE</span>
+  </div>
+</nav>
+
+<!-- ───── HERO ───── -->
+<section class="hero">
+  <div class="hero-eyebrow">// TECHNICAL SKILL PROFILE</div>
+  <div class="hero-icon">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="SQL" />
+  </div>
+  <h1>SQL &amp; Database Engineering</h1>
+  <p class="hero-subtitle">
+    25+ years architecting, tuning, and automating enterprise-grade relational databases at AT&amp;T, Verizon, and TEOCO — from billing systems handling 24/7 cycles to multi-terabyte analytics pipelines.
+  </p>
+  <div class="hero-tags">
+    <span class="tag tag-cyan">Oracle DB</span>
+    <span class="tag tag-cyan">SQL Server</span>
+    <span class="tag tag-green">PL/SQL</span>
+    <span class="tag tag-green">ETL Pipelines</span>
+    <span class="tag tag-purple">Performance Tuning</span>
+    <span class="tag tag-orange">SOX Compliance</span>
+  </div>
+</section>
+
+<!-- ───── MAIN ───── -->
+<main>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric-value">25+</span>
+      <span class="metric-label">Years DB Experience</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">30%</span>
+      <span class="metric-label">Operational Visibility ↑</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">1M+</span>
+      <span class="metric-label">Files Archived / Day</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value">25%</span>
+      <span class="metric-label">Query Latency Reduction</span>
+    </div>
+  </div>
+
+  <!-- SKILLS GRID -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Core Competencies</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <span class="skill-card-icon">💾</span>
+      <h3>Relational Databases</h3>
+      <ul>
+        <li>Oracle Database (9i–19c)</li>
+        <li>Microsoft SQL Server</li>
+        <li>Schema design &amp; normalization</li>
+        <li>Partitioning strategies</li>
+        <li>Index optimization</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <span class="skill-card-icon">⚡</span>
+      <h3>PL/SQL &amp; T-SQL</h3>
+      <ul>
+        <li>Stored procedures &amp; packages</li>
+        <li>Triggers &amp; cursors</li>
+        <li>Bulk collect / FORALL</li>
+        <li>Dynamic SQL</li>
+        <li>Exception handling</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <span class="skill-card-icon">🔄</span>
+      <h3>ETL &amp; Data Pipelines</h3>
+      <ul>
+        <li>Automated ETL scripting</li>
+        <li>3GPP data processing (HSS/HLR)</li>
+        <li>Metadata archiving (1M+ files/day)</li>
+        <li>Shell + SQL integration</li>
+        <li>Incremental load patterns</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <span class="skill-card-icon">📊</span>
+      <h3>Performance &amp; Tuning</h3>
+      <ul>
+        <li>EXPLAIN PLAN / AWR reports</li>
+        <li>Query rewrite &amp; hints</li>
+        <li>Table stats &amp; histograms</li>
+        <li>Parallel query execution</li>
+        <li>Connection pool management</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <span class="skill-card-icon">🔒</span>
+      <h3>Security &amp; Compliance</h3>
+      <ul>
+        <li>SOX compliance enforcement</li>
+        <li>Role-based access control</li>
+        <li>Audit trail management</li>
+        <li>Data masking &amp; encryption</li>
+        <li>GRC activities</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <span class="skill-card-icon">🛠️</span>
+      <h3>Tooling &amp; Integration</h3>
+      <ul>
+        <li>SQL*Plus / SQL Developer</li>
+        <li>SSMS / Azure Data Studio</li>
+        <li>PowerShell + SQL Server</li>
+        <li>HDFS / Hadoop integration</li>
+        <li>Ansible DB automation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROFICIENCY BARS -->
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Proficiency Levels</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="proficiency">
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">Oracle DB / SQL*Plus</span><span class="prof-pct">95%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:95%"></div></div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">PL/SQL — Stored Procedures &amp; Packages</span><span class="prof-pct">92%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:92%"></div></div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">Microsoft SQL Server / T-SQL</span><span class="prof-pct">88%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:88%"></div></div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">ETL Design &amp; Automation</span><span class="prof-pct">90%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:90%"></div></div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">Performance Tuning &amp; Query Optimization</span><span class="prof-pct">87%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:87%"></div></div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-header"><span class="prof-label">PowerShell / Shell DB Scripting</span><span class="prof-pct">85%</span></div>
+      <div class="prof-track"><div class="prof-fill" style="width:85%"></div></div>
+    </div>
+  </div>
+
+  <!-- CODE SHOWCASE -->
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Code Samples</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="code-showcase">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchTab('etl')">ETL_PROC.sql</button>
+      <button class="code-tab" onclick="switchTab('billing')">BILLING_AUDIT.sql</button>
+      <button class="code-tab" onclick="switchTab('tuning')">PERF_TUNING.sql</button>
+    </div>
+
+    <pre class="code-block active" id="code-etl"><span class="sql-cmt">-- ============================================================
+--  Automated ETL Procedure: 3GPP CDR Staging to Core
+--  Platform: Oracle 19c | Context: AT&T / Verizon BSS
+-- ============================================================</span>
+
+<span class="sql-kw">CREATE OR REPLACE PROCEDURE</span> <span class="sql-fn">etl_load_cdr_records</span> (
+    p_batch_date   <span class="sql-kw">IN</span>  <span class="sql-tbl">DATE</span>     <span class="sql-kw">DEFAULT</span> <span class="sql-fn">SYSDATE</span>,
+    p_rows_loaded  <span class="sql-kw">OUT</span> <span class="sql-tbl">NUMBER</span>
+)
+<span class="sql-kw">AS</span>
+    v_batch_id     <span class="sql-tbl">NUMBER</span>;
+    v_count        <span class="sql-tbl">PLS_INTEGER</span> := <span class="sql-num">0</span>;
+    ex_no_data     <span class="sql-tbl">EXCEPTION</span>;
+
+<span class="sql-kw">BEGIN</span>
+    <span class="sql-cmt">-- Generate batch identifier</span>
+    <span class="sql-kw">SELECT</span> <span class="sql-tbl">etl_batch_seq</span>.<span class="sql-fn">NEXTVAL</span> <span class="sql-kw">INTO</span> v_batch_id <span class="sql-kw">FROM</span> <span class="sql-tbl">DUAL</span>;
+
+    <span class="sql-cmt">-- Bulk insert from staging to core via MERGE</span>
+    <span class="sql-kw">MERGE INTO</span> <span class="sql-tbl">cdr_core</span> tgt
+    <span class="sql-kw">USING</span> (
+        <span class="sql-kw">SELECT</span> record_id, msisdn, call_type, duration_sec,
+               <span class="sql-fn">TRUNC</span>(call_ts) call_date, node_id
+        <span class="sql-kw">FROM</span>   <span class="sql-tbl">cdr_staging</span>
+        <span class="sql-kw">WHERE</span>  load_date = <span class="sql-fn">TRUNC</span>(p_batch_date)
+        <span class="sql-kw">AND</span>    status = <span class="sql-str">'PENDING'</span>
+    ) src
+    <span class="sql-kw">ON</span> (tgt.record_id = src.record_id)
+    <span class="sql-kw">WHEN MATCHED THEN UPDATE SET</span>
+        tgt.status = <span class="sql-str">'RELOADED'</span>, tgt.batch_id = v_batch_id
+    <span class="sql-kw">WHEN NOT MATCHED THEN INSERT</span>
+        (record_id, msisdn, call_type, duration_sec,
+         call_date, node_id, batch_id, status)
+    <span class="sql-kw">VALUES</span>
+        (src.record_id, src.msisdn, src.call_type, src.duration_sec,
+         src.call_date, src.node_id, v_batch_id, <span class="sql-str">'LOADED'</span>);
+
+    v_count := <span class="sql-fn">SQL%ROWCOUNT</span>;
+    <span class="sql-kw">IF</span> v_count = <span class="sql-num">0</span> <span class="sql-kw">THEN RAISE</span> ex_no_data; <span class="sql-kw">END IF</span>;
+
+    <span class="sql-kw">UPDATE</span> <span class="sql-tbl">cdr_staging</span>
+       <span class="sql-kw">SET</span> status = <span class="sql-str">'PROCESSED'</span>, batch_id = v_batch_id
+     <span class="sql-kw">WHERE</span> load_date = <span class="sql-fn">TRUNC</span>(p_batch_date)
+       <span class="sql-kw">AND</span> status = <span class="sql-str">'PENDING'</span>;
+
+    p_rows_loaded := v_count;
+    <span class="sql-fn">COMMIT</span>;
+
+<span class="sql-kw">EXCEPTION</span>
+    <span class="sql-kw">WHEN</span> ex_no_data <span class="sql-kw">THEN</span>
+        <span class="sql-fn">DBMS_OUTPUT</span>.PUT_LINE(<span class="sql-str">'No records for batch date: '</span> || p_batch_date);
+    <span class="sql-kw">WHEN OTHERS THEN</span>
+        <span class="sql-fn">ROLLBACK</span>;
+        <span class="sql-fn">RAISE</span>;
+<span class="sql-kw">END</span> etl_load_cdr_records;
+/</pre>
+
+    <pre class="code-block" id="code-billing"><span class="sql-cmt">-- ============================================================
+--  Billing Audit Query: SOX-Compliant Revenue Reconciliation
+--  Platform: Oracle | Context: AT&T Cingular Billing Cycles
+-- ============================================================</span>
+
+<span class="sql-kw">WITH</span> <span class="sql-tbl">daily_revenue</span> <span class="sql-kw">AS</span> (
+    <span class="sql-kw">SELECT</span>
+        <span class="sql-fn">TRUNC</span>(txn_timestamp, <span class="sql-str">'DD'</span>)          <span class="sql-kw">AS</span> txn_date,
+        account_type,
+        <span class="sql-fn">SUM</span>(charge_amount)                  <span class="sql-kw">AS</span> gross_revenue,
+        <span class="sql-fn">SUM</span>(discount_amount)                <span class="sql-kw">AS</span> total_discounts,
+        <span class="sql-fn">COUNT</span>(DISTINCT subscriber_id)       <span class="sql-kw">AS</span> active_subs,
+        <span class="sql-fn">SUM</span>(<span class="sql-kw">CASE WHEN</span> status = <span class="sql-str">'FAILED'</span>
+                 <span class="sql-kw">THEN</span> charge_amount <span class="sql-kw">ELSE</span> <span class="sql-num">0</span> <span class="sql-kw">END</span>) <span class="sql-kw">AS</span> failed_revenue
+    <span class="sql-kw">FROM</span>   <span class="sql-tbl">billing_transactions</span>
+    <span class="sql-kw">WHERE</span>  txn_timestamp >= <span class="sql-fn">ADD_MONTHS</span>(<span class="sql-fn">TRUNC</span>(<span class="sql-fn">SYSDATE</span>, <span class="sql-str">'MM'</span>), <span class="sql-num">-1</span>)
+    <span class="sql-kw">GROUP BY</span>
+        <span class="sql-fn">TRUNC</span>(txn_timestamp, <span class="sql-str">'DD'</span>), account_type
+),
+<span class="sql-tbl">variance_check</span> <span class="sql-kw">AS</span> (
+    <span class="sql-kw">SELECT</span>
+        d.*,
+        <span class="sql-fn">LAG</span>(gross_revenue, <span class="sql-num">1</span>) <span class="sql-kw">OVER</span>
+            (<span class="sql-kw">PARTITION BY</span> account_type <span class="sql-kw">ORDER BY</span> txn_date) <span class="sql-kw">AS</span> prev_day_rev,
+        <span class="sql-fn">ROUND</span>(
+            (gross_revenue - <span class="sql-fn">LAG</span>(gross_revenue,<span class="sql-num">1</span>)
+                <span class="sql-kw">OVER</span>(<span class="sql-kw">PARTITION BY</span> account_type <span class="sql-kw">ORDER BY</span> txn_date))
+            / <span class="sql-fn">NULLIF</span>(<span class="sql-fn">LAG</span>(gross_revenue,<span class="sql-num">1</span>)
+                <span class="sql-kw">OVER</span>(<span class="sql-kw">PARTITION BY</span> account_type <span class="sql-kw">ORDER BY</span> txn_date), <span class="sql-num">0</span>)
+            * <span class="sql-num">100</span>, <span class="sql-num">2</span>
+        ) <span class="sql-kw">AS</span> day_over_day_pct
+    <span class="sql-kw">FROM</span> <span class="sql-tbl">daily_revenue</span> d
+)
+<span class="sql-kw">SELECT</span>
+    txn_date,
+    account_type,
+    <span class="sql-fn">TO_CHAR</span>(gross_revenue, <span class="sql-str">'$999,999,990.00'</span>)  <span class="sql-kw">AS</span> gross_rev,
+    <span class="sql-fn">TO_CHAR</span>(total_discounts, <span class="sql-str">'$999,999,990.00'</span>) <span class="sql-kw">AS</span> discounts,
+    active_subs,
+    day_over_day_pct                              <span class="sql-kw">AS</span> dod_variance_pct,
+    <span class="sql-kw">CASE WHEN</span> <span class="sql-fn">ABS</span>(day_over_day_pct) > <span class="sql-num">15</span>
+         <span class="sql-kw">THEN</span> <span class="sql-str">'⚠ FLAG FOR REVIEW'</span>
+         <span class="sql-kw">ELSE</span> <span class="sql-str">'OK'</span>
+    <span class="sql-kw">END</span> <span class="sql-kw">AS</span> audit_status
+<span class="sql-kw">FROM</span>  <span class="sql-tbl">variance_check</span>
+<span class="sql-kw">WHERE</span> failed_revenue / <span class="sql-fn">NULLIF</span>(gross_revenue, <span class="sql-num">0</span>) > <span class="sql-num">0.02</span>
+   <span class="sql-kw">OR</span>  <span class="sql-fn">ABS</span>(day_over_day_pct) > <span class="sql-num">15</span>
+<span class="sql-kw">ORDER BY</span> txn_date <span class="sql-kw">DESC</span>, account_type;</pre>
+
+    <pre class="code-block" id="code-tuning"><span class="sql-cmt">-- ============================================================
+--  Performance Tuning: Index Strategy + Query Rewrite
+--  Platform: SQL Server | Context: Verizon App Support
+-- ============================================================</span>
+
+<span class="sql-cmt">-- BEFORE: full table scan on 200M-row incident table (12.3s)</span>
+<span class="sql-cmt">-- SELECT * FROM incidents WHERE app_id = 'VZ-CORE' AND sev = 1</span>
+
+<span class="sql-cmt">-- STEP 1: Composite covering index</span>
+<span class="sql-kw">CREATE NONCLUSTERED INDEX</span> <span class="sql-tbl">IX_incidents_app_sev_ts</span>
+    <span class="sql-kw">ON</span> <span class="sql-tbl">dbo.incidents</span> (app_id, severity_level, created_ts <span class="sql-kw">DESC</span>)
+    <span class="sql-kw">INCLUDE</span> (incident_id, title, assigned_team, resolved_ts)
+<span class="sql-kw">WITH</span> (ONLINE = <span class="sql-kw">ON</span>, FILLFACTOR = <span class="sql-num">85</span>);
+
+<span class="sql-cmt">-- STEP 2: Rewritten query using CTE + filtered window</span>
+<span class="sql-kw">WITH</span> <span class="sql-tbl">recent_sev1</span> <span class="sql-kw">AS</span> (
+    <span class="sql-kw">SELECT</span>
+        incident_id,
+        title,
+        assigned_team,
+        created_ts,
+        resolved_ts,
+        <span class="sql-fn">DATEDIFF</span>(<span class="sql-kw">MINUTE</span>, created_ts, <span class="sql-fn">ISNULL</span>(resolved_ts, <span class="sql-fn">GETDATE</span>())) <span class="sql-kw">AS</span> mttr_min,
+        <span class="sql-fn">ROW_NUMBER</span>() <span class="sql-kw">OVER</span> (
+            <span class="sql-kw">PARTITION BY</span> assigned_team
+            <span class="sql-kw">ORDER BY</span>     created_ts <span class="sql-kw">DESC</span>
+        ) <span class="sql-kw">AS</span> rn
+    <span class="sql-kw">FROM</span>   <span class="sql-tbl">dbo.incidents</span> <span class="sql-kw">WITH</span> (NOLOCK)
+    <span class="sql-kw">WHERE</span>  app_id         = <span class="sql-str">N'VZ-CORE'</span>
+      <span class="sql-kw">AND</span>  severity_level = <span class="sql-num">1</span>
+      <span class="sql-kw">AND</span>  created_ts    >= <span class="sql-fn">DATEADD</span>(<span class="sql-kw">DAY</span>, <span class="sql-num">-30</span>, <span class="sql-fn">GETDATE</span>())
+)
+<span class="sql-kw">SELECT</span>
+    assigned_team,
+    <span class="sql-fn">COUNT</span>(*)                                     <span class="sql-kw">AS</span> incident_count,
+    <span class="sql-fn">AVG</span>(<span class="sql-kw">CAST</span>(mttr_min <span class="sql-kw">AS</span> <span class="sql-tbl">DECIMAL</span>(<span class="sql-num">10</span>,<span class="sql-num">2</span>)))         <span class="sql-kw">AS</span> avg_mttr_min,
+    <span class="sql-fn">MAX</span>(mttr_min)                                <span class="sql-kw">AS</span> worst_mttr_min,
+    <span class="sql-fn">MIN</span>(<span class="sql-kw">CASE WHEN</span> resolved_ts <span class="sql-kw">IS NULL</span>
+             <span class="sql-kw">THEN</span> <span class="sql-num">1</span> <span class="sql-kw">ELSE</span> <span class="sql-num">0</span> <span class="sql-kw">END</span>)               <span class="sql-kw">AS</span> open_incidents
+<span class="sql-kw">FROM</span>  <span class="sql-tbl">recent_sev1</span>
+<span class="sql-kw">GROUP BY</span> assigned_team
+<span class="sql-kw">HAVING</span>   <span class="sql-fn">COUNT</span>(*) > <span class="sql-num">2</span>
+<span class="sql-kw">ORDER BY</span> avg_mttr_min <span class="sql-kw">ASC</span>;
+<span class="sql-cmt">-- AFTER: 0.4s execution — 30x improvement using covering index</span></pre>
+  </div>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Database Experience Timeline</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-company">Verizon</div>
+        <div class="timeline-period">2020 – 2025</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <h3>Tier 2 Production / App Support Engineer</h3>
+        <ul>
+          <li><span class="bullet">◈</span>Developed automated ETL scripts and PL/SQL queries that increased operational visibility by 30% across 72+ enterprise applications</li>
+          <li><span class="bullet">◈</span>Maintained SQL-backed runbook automation tied to Ansible/Jenkins, reducing Sev-1 MTTR by 85%</li>
+          <li><span class="bullet">◈</span>Optimized Oracle and SQL Server queries for BSS/CRM platforms running on Apache WebLogic</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-company">TEOCO Corp</div>
+        <div class="timeline-period">2013 – 2019</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <h3>Senior Systems Integration Engineer</h3>
+        <ul>
+          <li><span class="bullet">◈</span>Led database migration for AT&T Linux platform transitions, cutting resolution times by 80%</li>
+          <li><span class="bullet">◈</span>Maintained 98% SLA adherence managing BSS billing and CRM systems with complex PL/SQL packages</li>
+          <li><span class="bullet">◈</span>Built ETL automation pipelines integrating Oracle schemas with HDFS for telecom analytics</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-company">AIRCOM / TEOCO</div>
+        <div class="timeline-period">2009 – 2013</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <h3>Database Architect</h3>
+        <ul>
+          <li><span class="bullet">◈</span>Implemented metadata archiving system processing 1M+ files daily — enhanced retrieval efficiency dramatically</li>
+          <li><span class="bullet">◈</span>Developed HDFS-backed storage solutions reducing query latency by 25%</li>
+          <li><span class="bullet">◈</span>Designed Oracle schemas for GSM/UMTS/LTE OSS solutions across multi-vendor VMware deployments</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-company">AT&amp;T</div>
+        <div class="timeline-period">1999 – 2009</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <h3>Implementation Solutions Engineer</h3>
+        <ul>
+          <li><span class="bullet">◈</span>Designed custom billing tools for AT&amp;T and Cingular Wireless using Oracle and Shell scripting, supporting 24/7 billing cycles</li>
+          <li><span class="bullet">◈</span>Performed complex ETL processing for 3GPP data (HSS/HLR/MME) repositories for strategic planning</li>
+          <li><span class="bullet">◈</span>Enforced strict SOX compliance and enterprise security protocols across all Oracle provisioning activities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Tools &amp; Platforms</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="tools-row">
+    <div class="tool-pill"><span class="dot"></span>Oracle DB 9i–19c</div>
+    <div class="tool-pill"><span class="dot"></span>SQL*Plus</div>
+    <div class="tool-pill"><span class="dot"></span>SQL Developer</div>
+    <div class="tool-pill"><span class="dot"></span>SQL Server 2012–2019</div>
+    <div class="tool-pill"><span class="dot"></span>SSMS</div>
+    <div class="tool-pill"><span class="dot"></span>Azure Data Studio</div>
+    <div class="tool-pill"><span class="dot"></span>PL/SQL</div>
+    <div class="tool-pill"><span class="dot"></span>T-SQL</div>
+    <div class="tool-pill"><span class="dot"></span>PowerShell + SQLCMD</div>
+    <div class="tool-pill"><span class="dot"></span>HDFS Integration</div>
+    <div class="tool-pill"><span class="dot"></span>Kafka + Oracle CDC</div>
+    <div class="tool-pill"><span class="dot"></span>Toad for Oracle</div>
+    <div class="tool-pill"><span class="dot"></span>Kibana (ELK)</div>
+    <div class="tool-pill"><span class="dot"></span>New Relic DB Monitoring</div>
+    <div class="tool-pill"><span class="dot"></span>Ansible DB Modules</div>
+  </div>
+
+  <!-- BACK NAV -->
+  <div class="back-section">
+    <a class="back-btn" href="Resume_Page.html#skills-section">← Skills</a>
+    <a class="back-btn" href="landing_page.html">⌂ Home</a>
+  </div>
+
+</main>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.code-block').forEach(b => b.classList.remove('active'));
+    document.getElementById('code-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
