@@ -2,750 +2,1071 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karl Dunn – Technical Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Karl Dunn - Senior Systems Integration Engineer</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0d0d1a;
+            background: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
+        }
+
+        /* Animated Hero Background */
+        .hero {
+            position: relative;
             min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
         }
 
-        /* ── STARFIELD BACKGROUND ── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(88,80,180,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(60,100,200,0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(120,60,200,0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
+        /* Animated circuit board pattern */
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            animation: pulse 4s ease-in-out infinite;
         }
 
-        /* Stars */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 5%  80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 33% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 78% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,0.35) 0%, transparent 100%);
-            pointer-events: none;
-            z-index: 0;
+        .circuit-line.horizontal {
+            height: 2px;
+            width: 100%;
         }
 
-        /* ── HEADER ── */
-        .site-header {
+        .circuit-line.vertical {
+            width: 2px;
+            height: 100%;
+        }
+
+        .circuit-line:nth-child(1) { top: 15%; animation-delay: 0s; }
+        .circuit-line:nth-child(2) { top: 35%; animation-delay: 1s; }
+        .circuit-line:nth-child(3) { top: 55%; animation-delay: 2s; }
+        .circuit-line:nth-child(4) { top: 75%; animation-delay: 3s; }
+        .circuit-line:nth-child(5) { left: 20%; animation-delay: 0.5s; }
+        .circuit-line:nth-child(6) { left: 50%; animation-delay: 1.5s; }
+        .circuit-line:nth-child(7) { left: 80%; animation-delay: 2.5s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Floating tech icons */
+        .tech-float {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .tech-float:nth-child(8) { top: 10%; left: 10%; animation-delay: 0s; }
+        .tech-float:nth-child(9) { top: 20%; right: 15%; animation-delay: 2s; }
+        .tech-float:nth-child(10) { bottom: 15%; left: 20%; animation-delay: 4s; }
+        .tech-float:nth-child(11) { bottom: 25%; right: 25%; animation-delay: 6s; }
+
+        /* Hero Content */
+        .hero-content {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 60px 20px 40px;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .header-name {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff, #a78bfa, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .header-sub {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 1px;
-        }
-
-        /* ── SECTION TITLES ── */
-        .section-title {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.55);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        .profile-section {
             margin-bottom: 40px;
         }
 
-        /* ── RUNBOOK SECTION LABEL ── */
-        .runbooks-label {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 16px 20px 8px;
-            font-size: 0.78rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #0077be);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 80px;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+            animation: float 4s ease-in-out infinite;
+            border: 5px solid rgba(0, 212, 255, 0.3);
         }
 
-        .runbook-links {
-            position: relative;
-            z-index: 10;
+        .hero-name {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero-summary {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cta-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            padding: 12px 20px 50px;
         }
 
-        .runbook-links a {
-            color: rgba(167,139,250,0.8);
-            text-decoration: none;
-            font-size: 0.85rem;
+        .cta-button {
+            padding: 18px 40px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: 1px;
-            padding: 6px 14px;
-            border: 1px solid rgba(167,139,250,0.2);
-            border-radius: 20px;
-            transition: all 0.25s;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .runbook-links a:hover {
-            color: #a78bfa;
-            border-color: rgba(167,139,250,0.5);
-            background: rgba(167,139,250,0.08);
+        .cta-primary {
+            background: linear-gradient(135deg, #00d4ff, #0077be);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
         }
 
-        /* ── CARDS ROW ── */
-        .cards-section {
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        .scroll-indicator span {
+            font-size: 40px;
+            color: #00d4ff;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 119, 190, 0.05));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 119, 190, 0.1));
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #00d4ff;
             position: relative;
-            z-index: 10;
-            padding: 20px 40px 80px;
         }
 
-        .cards-row {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .yaml-launch {
+            text-decoration: none;
+            color: white;
+            font-family: Verdana, sans-serif;
+            display: inline-block;
+            padding: 8px 4px;
+            border-radius: 8px;
+            transition: box-shadow 0.25s ease, transform 0.15s ease;
+        }
+
+        .yaml-launch:hover {
+            transform: translateY(-2px);
+        }
+
+        .yaml-launch:active {
+            transform: scale(0.96);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.7);
+        }
+
+        .yaml-linux:hover { box-shadow: 0 0 16px rgba(255, 215, 0, 0.9); }
+        .yaml-html:hover { box-shadow: 0 0 16px rgba(255, 140, 0, 0.9); }
+        .yaml-ansible:hover { box-shadow: 0 0 16px rgba(220, 20, 60, 0.9); }
+        .yaml-remedy:hover { box-shadow: 0 0 16px rgba(30, 144, 255, 0.9); }
+        .yaml-hadoop:hover { box-shadow: 0 0 16px rgba(255, 215, 0, 0.9); }
+        .yaml-splunk:hover { box-shadow: 0 0 16px rgba(50, 205, 50, 0.9); }
+        .yaml-sql:hover { box-shadow: 0 0 16px rgba(255, 69, 0, 0.9), 0 0 22px rgba(0, 212, 255, 0.6); }
+        .yaml-tableau:hover { 
+            box-shadow: 
+                0 0 16px rgba(0, 191, 255, 0.9),
+                0 0 22px rgba(255, 69, 0, 0.7);
+        }
+
+        .skills-section {
+            padding: 80px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* ── INDIVIDUAL CARD ── */
-        .doc-card {
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 100%;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 0, 0, 0.3));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+
+        .skill-category h3 {
+            font-size: 24px;
+            color: #00d4ff;
+            margin-bottom: 20px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            transition: transform 0.3s ease;
+            gap: 10px;
         }
 
-        .doc-card:hover { transform: translateY(-8px); }
-
-        .doc-card:hover .card-body {
-            border-color: rgba(167,139,250,0.7);
-            box-shadow:
-                0 0 30px rgba(139,92,246,0.4),
-                0 20px 50px rgba(0,0,0,0.5),
-                inset 0 1px 0 rgba(255,255,255,0.15);
+        .skill-category .icon {
+            font-size: 32px;
         }
 
-        .card-body {
-            width: 130px;
-            height: 160px;
-            background: linear-gradient(160deg, #3d3580 0%, #2a2060 40%, #1e1850 100%);
-            border: 1.5px solid rgba(167,139,250,0.35);
-            border-radius: 14px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow:
-                0 8px 32px rgba(0,0,0,0.4),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-
-        /* Top accent bar */
-        .card-body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #7c3aed, #a78bfa, #60a5fa);
-            opacity: 0.9;
-        }
-
-        /* Document lines */
-        .card-lines {
-            position: absolute;
-            top: 28px;
-            left: 18px;
-            right: 18px;
+        .skill-list {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 10px;
         }
 
-        .card-line {
-            height: 3px;
-            border-radius: 2px;
-            background: linear-gradient(90deg, rgba(167,139,250,0.6), rgba(96,165,250,0.4));
-        }
-
-        .card-line:nth-child(1) { width: 100%; }
-        .card-line:nth-child(2) { width: 85%; }
-        .card-line:nth-child(3) { width: 92%; }
-        .card-line:nth-child(4) { width: 75%; }
-        .card-line:nth-child(5) { width: 88%; }
-        .card-line:nth-child(6) { width: 60%; }
-        .card-line:nth-child(7) { width: 80%; }
-        .card-line:nth-child(8) { width: 70%; }
-
-        /* SQL card gets orange/cyan accent lines */
-        .doc-card.sql .card-line {
-            background: linear-gradient(90deg, rgba(0,212,255,0.6), rgba(255,107,53,0.4));
-        }
-        .doc-card.sql .card-body {
-            background: linear-gradient(160deg, #1a3a4a 0%, #0f2a3a 40%, #0a1a2e 100%);
-            border-color: rgba(0,212,255,0.35);
-        }
-        .doc-card.sql .card-body::before {
-            background: linear-gradient(90deg, #0077be, #00d4ff, #ff6b35);
-        }
-        .doc-card.sql:hover .card-body {
-            border-color: rgba(0,212,255,0.7);
-            box-shadow:
-                0 0 30px rgba(0,212,255,0.35),
-                0 20px 50px rgba(0,0,0,0.5),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-
-        /* Card icon overlay */
-        .card-icon {
-            position: absolute;
-            bottom: 14px;
-            right: 14px;
-            width: 28px;
-            height: 28px;
-            opacity: 0.35;
-            filter: saturate(0) brightness(2);
-        }
-
-        /* Shimmer sweep on hover */
-        .card-body::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-        .doc-card:hover .card-body::after { transform: translateX(100%); }
-
-        .card-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.85);
-            letter-spacing: 0.5px;
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
             text-align: center;
         }
 
-        .doc-card.sql .card-label { color: rgba(0,212,255,0.9); }
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: scale(1.05);
+        }
 
-        /* ── PROJECT DETAIL CARDS ── */
-        .projects-section {
-            position: relative;
-            z-index: 10;
-            max-width: 1100px;
+        .experience-section {
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px 80px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
         }
 
-        .project-card {
-            background: linear-gradient(135deg, rgba(61,53,128,0.2), rgba(0,0,0,0.4));
-            border: 1px solid rgba(167,139,250,0.2);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            border-color: rgba(167,139,250,0.45);
-            box-shadow: 0 10px 40px rgba(139,92,246,0.15);
-        }
-
-        .project-card.sql-card {
-            background: linear-gradient(135deg, rgba(0,80,100,0.2), rgba(0,0,0,0.4));
-            border-color: rgba(0,212,255,0.2);
-        }
-        .project-card.sql-card:hover {
-            border-color: rgba(0,212,255,0.45);
-            box-shadow: 0 10px 40px rgba(0,212,255,0.12);
-        }
-
-        .project-tag {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(167,139,250,0.7);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .sql-card .project-tag { color: rgba(0,212,255,0.7); }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .project-subtitle {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 20px;
-        }
-
-        .project-bullets {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            margin-bottom: 24px;
-        }
-
-        .project-bullets li {
-            font-size: 0.88rem;
-            color: rgba(255,255,255,0.7);
-            padding-left: 18px;
+        .experience-timeline {
             position: relative;
-            line-height: 1.5;
+            padding-left: 50px;
         }
 
-        .project-bullets li::before {
-            content: '▸';
+        .experience-timeline::before {
+            content: '';
             position: absolute;
             left: 0;
-            color: rgba(167,139,250,0.7);
-        }
-        .sql-card .project-bullets li::before { color: rgba(0,212,255,0.7); }
-
-        /* Mini terminal in SQL card */
-        .mini-terminal {
-            background: #0a0f14;
-            border: 1px solid rgba(0,212,255,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #00d4ff, transparent);
         }
 
-        .mini-terminal-bar {
-            background: rgba(0,212,255,0.07);
-            padding: 8px 14px;
-            border-bottom: 1px solid rgba(0,212,255,0.12);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .mini-dot { width: 9px; height: 9px; border-radius: 50%; }
-        .md-r { background: #ff5f57; }
-        .md-y { background: #ffbd2e; }
-        .md-g { background: #28c840; }
-
-        .mini-terminal-body {
-            padding: 14px 16px;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.9;
-        }
-
-        .mt-kw { color: #ff79c6; font-weight: bold; }
-        .mt-fn { color: #50fa7b; }
-        .mt-str{ color: #f1fa8c; }
-        .mt-cm { color: #555f7a; font-style: italic; }
-        .mt-tbl{ color: #8be9fd; }
-
-        .mini-term-btns {
-            display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px 14px;
-        }
-
-        .mt-btn {
-            padding: 5px 14px;
-            background: rgba(0,212,255,0.1);
-            border: 1px solid rgba(0,212,255,0.3);
-            border-radius: 6px;
-            color: #00d4ff;
-            font-size: 11px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            transition: all 0.2s;
-        }
-        .mt-btn:hover {
-            background: rgba(0,212,255,0.22);
-            box-shadow: 0 0 10px rgba(0,212,255,0.3);
-        }
-
-        .mt-output {
-            padding: 10px 16px 14px;
-            color: #00ff88;
-            font-family: 'Courier New', monospace;
-            font-size: 11px;
-            line-height: 1.7;
-            min-height: 36px;
-            white-space: pre;
-        }
-
-        .view-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 26px;
-            border: 1px solid rgba(167,139,250,0.45);
-            border-radius: 8px;
-            color: rgba(167,139,250,0.9);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.25s;
-            background: rgba(139,92,246,0.08);
-        }
-        .view-btn:hover {
-            background: rgba(139,92,246,0.18);
-            border-color: rgba(167,139,250,0.7);
-            transform: translateY(-2px);
-        }
-
-        .view-btn.sql-btn {
-            border-color: rgba(0,212,255,0.45);
-            color: rgba(0,212,255,0.9);
-            background: rgba(0,212,255,0.06);
-        }
-        .view-btn.sql-btn:hover {
-            background: rgba(0,212,255,0.15);
-            border-color: rgba(0,212,255,0.7);
-            box-shadow: 0 0 20px rgba(0,212,255,0.2);
-        }
-
-        /* ── FOOTER BUTTONS ── */
-        .footer-btns {
+        .experience-item {
+            margin-bottom: 50px;
             position: relative;
-            z-index: 10;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .experience-item:nth-child(1) { animation-delay: 0.1s; }
+        .experience-item:nth-child(2) { animation-delay: 0.2s; }
+        .experience-item:nth-child(3) { animation-delay: 0.3s; }
+        .experience-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -56px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 0, 0, 0.3));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .experience-header {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px 20px 60px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
             flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .footer-btn {
-            padding: 14px 32px;
-            border: 1px solid rgba(167,139,250,0.4);
-            border-radius: 50px;
-            color: rgba(167,139,250,0.9);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            background: rgba(139,92,246,0.08);
-            transition: all 0.3s;
-        }
-        .footer-btn:hover {
-            background: rgba(139,92,246,0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(139,92,246,0.2);
+        .experience-title {
+            font-size: 26px;
+            color: #00d4ff;
+            margin-bottom: 8px;
         }
 
-        @media(max-width: 768px) {
-            .cards-section { padding: 20px 20px 60px; }
-            .card-body { width: 110px; height: 136px; }
-            .projects-section { padding: 0 20px 60px; }
+        .experience-company {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 5px;
+        }
+
+        .experience-duration {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .experience-highlights {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .highlight-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid #00d4ff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .highlight-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .highlight-text {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-name { font-size: 48px; }
+            .hero-title { font-size: 24px; }
+            .hero-summary { font-size: 16px; }
+            .section-title { font-size: 36px; }
+            .experience-timeline { padding-left: 30px; }
+            .experience-item::before { left: -36px; }
         }
     </style>
 </head>
+
 <body>
+    <div class="hero">
+        <div class="circuit-line horizontal"></div>
+        <div class="circuit-line horizontal"></div>
+        <div class="circuit-line horizontal"></div>
+        <div class="circuit-line horizontal"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-line vertical"></div>
 
-    <!-- ── HEADER ── -->
-    <header class="site-header">
-        <div class="header-name">Karl Dunn</div>
-        <div class="header-sub">Application Support &nbsp;•&nbsp; Systems Integration &nbsp;•&nbsp; DevOps &nbsp;•&nbsp; Automation</div>
-    </header>
+        <div class="tech-float">🧠</div>
+        <div class="tech-float">☁️</div>
+        <div class="tech-float">⚙️</div>
+        <div class="tech-float">🔧</div>
 
-    <div class="section-title">Building Reliable Systems. Automating Everything.</div>
-    <p style="position:relative;z-index:10;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:50px;padding:0 20px;">
-        Real-world engineering projects from enterprise environments.
-    </p>
-
-    <!-- ── RUNBOOK NAV ── -->
-    <div class="runbooks-label">📚 Technical Runbooks — Step-by-step operational guides</div>
-    <div class="runbook-links">
-        <a href="ansible_runbook_page.html">Ansible</a>
-        <a href="hadoop_runbook_page.html">Hadoop</a>
-        <a href="splunk_runbook_page.html">Splunk</a>
-        <a href="remedy_runbook_page.html">Remedy</a>
-        <a href="linux_runbook_page.html">Linux</a>
-        <a href="html_runbook_page.html">HTML</a>
-        <a href="sql_runbook_page.html" style="color:rgba(0,212,255,0.85);border-color:rgba(0,212,255,0.3);">SQL</a>
-    </div>
-
-    <!-- ── DOCUMENT CARDS ROW ── -->
-    <div class="cards-section">
-        <div class="cards-row">
-
-            <a href="ansible_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" alt="">
-                </div>
-                <span class="card-label">Ansible</span>
-            </a>
-
-            <a href="hadoop_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg" alt="">
-                </div>
-                <span class="card-label">Hadoop</span>
-            </a>
-
-            <a href="splunk_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="splunk.png" alt="">
-                </div>
-                <span class="card-label">Splunk</span>
-            </a>
-
-            <a href="remedy_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="remedy.png" alt="">
-                </div>
-                <span class="card-label">Remedy</span>
-            </a>
-
-            <a href="linux_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
-                </div>
-                <span class="card-label">Linux</span>
-            </a>
-
-            <a href="html_runbook_page.html" class="doc-card">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">
-                </div>
-                <span class="card-label">HTML</span>
-            </a>
-
-            <!-- ═══ SQL — NEW ═══ -->
-            <a href="sql_runbook_page.html" class="doc-card sql">
-                <div class="card-body">
-                    <div class="card-lines">
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                        <div class="card-line"></div><div class="card-line"></div>
-                    </div>
-                    <img class="card-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="">
-                </div>
-                <span class="card-label">SQL</span>
-            </a>
-
-        </div>
-    </div>
-
-    <!-- ── PROJECT DETAIL CARDS ── -->
-    <div class="projects-section">
-
-        <!-- Linux -->
-        <div class="project-card">
-            <div class="project-tag">Linux Project</div>
-            <div class="project-title">Linux / Unix Administration</div>
-            <div class="project-subtitle">System Operations &amp; Service Management</div>
-            <ul class="project-bullets">
-                <li>Command execution mirrors game action mechanics</li>
-                <li>File system navigation like exploring game nodes</li>
-                <li>Service control (systemctl) manages running processes</li>
-                <li>Log analysis tracks system events in real-time</li>
-            </ul>
-            <a href="linux_runbook_page.html" class="view-btn">View Full Linux Runbook →</a>
-        </div>
-
-        <!-- HTML -->
-        <div class="project-card">
-            <div class="project-tag">HTML Project</div>
-            <div class="project-title">HTML Website</div>
-            <div class="project-subtitle">Interactive Interface Development</div>
-            <ul class="project-bullets">
-                <li>DOM manipulation powers game UI and controls</li>
-                <li>Event handlers trigger actions like button clicks</li>
-                <li>CSS animations create visual feedback for user interactions</li>
-                <li>JavaScript logic manages state like game mechanics</li>
-            </ul>
-            <a href="html_runbook_page.html" class="view-btn">View Full HTML Project →</a>
-        </div>
-
-        <!-- Ansible -->
-        <div class="project-card">
-            <div class="project-tag">Ansible Project</div>
-            <div class="project-title">Ansible Automation</div>
-            <div class="project-subtitle">Automated Playbook Execution Engine</div>
-            <ul class="project-bullets">
-                <li>Orchestrates system configurations like deploying game patches</li>
-                <li>Idempotent task execution prevents duplicate operations</li>
-                <li>YAML playbooks define precise server state management</li>
-                <li>Inventory systems track multiple nodes in the network</li>
-            </ul>
-            <a href="ansible_runbook_page.html" class="view-btn">View Full Ansible Runbook →</a>
-        </div>
-
-        <!-- Hadoop -->
-        <div class="project-card">
-            <div class="project-tag">Hadoop Project</div>
-            <div class="project-title">Hadoop Cluster Deployment</div>
-            <div class="project-subtitle">Distributed Processing Network</div>
-            <ul class="project-bullets">
-                <li>Multi-node architecture mirrors game server clusters</li>
-                <li>HDFS replication ensures fault tolerance like game save backups</li>
-                <li>MapReduce processes massive datasets in parallel operations</li>
-                <li>YARN resource management optimizes computational efficiency</li>
-            </ul>
-            <a href="hadoop_runbook_page.html" class="view-btn">View Full Hadoop Runbook →</a>
-        </div>
-
-        <!-- Splunk -->
-        <div class="project-card">
-            <div class="project-tag">Splunk Project</div>
-            <div class="project-title">Splunk Monitoring</div>
-            <div class="project-subtitle">Event Log Analysis &amp; Pattern Detection</div>
-            <ul class="project-bullets">
-                <li>SPL queries parse system logs like game console commands</li>
-                <li>Real-time alerting detects critical events instantly</li>
-                <li>Dashboard panels display severity levels (INFO, WARN, ERROR)</li>
-                <li>Pattern analysis reduces incident response time</li>
-            </ul>
-            <a href="splunk_runbook_page.html" class="view-btn">View Full Splunk Runbook →</a>
-        </div>
-
-        <!-- Remedy -->
-        <div class="project-card">
-            <div class="project-tag">Remedy Project</div>
-            <div class="project-title">Remedy ITSM</div>
-            <div class="project-subtitle">Incident Ticketing &amp; Resolution System</div>
-            <ul class="project-bullets">
-                <li>Manages critical incidents like game-breaking bugs</li>
-                <li>Root cause analysis documents failure pathways</li>
-                <li>SLA tracking ensures timely resolution targets</li>
-                <li>Change management prevents system disruptions</li>
-            </ul>
-            <a href="remedy_runbook_page.html" class="view-btn">View Full Remedy Runbook →</a>
-        </div>
-
-        <!-- ═══ SQL PROJECT CARD — NEW ═══ -->
-        <div class="project-card sql-card">
-            <div class="project-tag">SQL Project</div>
-            <div class="project-title">💾 SQL / Oracle Database Engineering</div>
-            <div class="project-subtitle">Database Operations &amp; Query Automation Engine</div>
-            <ul class="project-bullets">
-                <li>PL/SQL procedures automate complex data operations like game engine loops</li>
-                <li>ETL pipelines transform raw telecom data the way physics engines process raw input</li>
-                <li>Index optimization reduces query time like frame-rate tuning in rendering</li>
-                <li>SOX audit controls enforce rules at the data layer, not just the app layer</li>
-            </ul>
-
-            <!-- Live mini terminal -->
-            <div class="mini-terminal">
-                <div class="mini-terminal-bar">
-                    <div class="mini-dot md-r"></div>
-                    <div class="mini-dot md-y"></div>
-                    <div class="mini-dot md-g"></div>
-                    <span style="margin-left:10px;font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.35);">oracle_db › sql_console</span>
-                </div>
-                <div class="mini-terminal-body">
-                    <span class="mt-cm">-- Select a query and run ▶</span><br>
-                    <span id="mtQuery" style="color:rgba(255,255,255,0.6);"></span>
-                </div>
-                <div class="mini-term-btns">
-                    <button class="mt-btn" onclick="mtRun(this,'etl')">ETL Load</button>
-                    <button class="mt-btn" onclick="mtRun(this,'audit')">Billing Audit</button>
-                    <button class="mt-btn" onclick="mtRun(this,'perf')">Perf Tune</button>
-                </div>
-                <div class="mt-output" id="mtOutput"></div>
+        <div class="hero-content">
+            <div class="profile-section">
+                <div class="profile-image">👨‍💻</div>
+                <h1 class="hero-name">Karl Dunn</h1>
+                <h2 class="hero-title">Senior Systems Integration Engineer</h2>
+                <p class="hero-summary">
+                    15+ years leading technical operations for enterprise applications, Linux/Unix systems, and databases. 
+                    Expert in automating infrastructure and CI/CD pipelines, reducing deployment time by up to 70%.
+                </p>
             </div>
 
-            <a href="sql_runbook_page.html" class="view-btn sql-btn">View Full SQL Runbook →</a>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="tel:469-219-1153">469-219-1153</a>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="/cdn-cgi/l/email-protection#ea818b9886c49ec48e9f8484aa8d878b8386c4898587"><span class="__cf_email__" data-cfemail="563d37243a7822783223383816313b373f3a7835393b">[email&#160;protected]</span></a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="https://linkedin.com/in/karltdunn" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#experience" class="cta-button cta-primary">View Experience</a>
+                <a href="#skills-section" class="cta-button cta-secondary">Explore Technical Skills</a>
+            </div>
         </div>
 
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
     </div>
 
-    <!-- ── FOOTER ── -->
-    <div class="footer-btns">
-        <a href="Resume_Page.html" class="footer-btn">📄 View Resume</a>
-        <a href="#" class="footer-btn">🎵 Play Music</a>
+    <h2 class="section-title">Performance Metrics 📈</h2>
+
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">85%</div>
+            <div class="stat-label">MTTR Reduction</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Deployment Time Saved</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">System Availability</div>
+        </div>
     </div>
 
-<script>
-const mtQueries = {
-    etl:   { q: 'EXEC etl_load_cdr_records(TRUNC(SYSDATE));', r: '✅ 2,847,391 rows loaded — 4.2s\n   Batch COMMITTED to cdr_core' },
-    audit: { q: "SELECT txn_date, dod_pct, audit_status\n  FROM billing_variance WHERE flag='⚠';", r: '⚠  3 accounts flagged (>15% DoD swing)\n   Escalated to Revenue Assurance' },
-    perf:  { q: "EXPLAIN PLAN FOR\n  SELECT * FROM incidents\n  WHERE app_id='VZ-CORE' AND sev=1;", r: '✅ Index IX_incidents_app_sev_ts hit\n   Elapsed: 0.4s  (was 12.3s — 30x gain)' }
-};
+    <h2 class="section-title" id="skills-section">Technical Skills 🎯</h2>
 
-function mtRun(btn, key) {
-    document.getElementById('mtQuery').textContent = mtQueries[key].q;
-    const out = document.getElementById('mtOutput');
-    out.textContent = '⏳ Executing...';
-    setTimeout(() => { out.textContent = mtQueries[key].r; }, 750);
-}
-</script>
-</body>
-</html>
+    <style>
+        .yaml-skills-container {
+            max-width: 1500px;
+            margin: 0 auto 80px;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .server-network {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            flex-wrap: nowrap;
+            gap: 0;
+            padding: 0 20px;
+        }
+
+        /* Cable container */
+        .cable-connection {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Main cable body */
+        .cable-body {
+            height: 8px;
+            background: linear-gradient(180deg, 
+                #2a4a6a 0%,
+                #1a3a5a 20%,
+                #0f2a4a 50%,
+                #1a3a5a 80%,
+                #2a4a6a 100%
+            );
+            position: relative;
+            border-radius: 4px;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cable-body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 8px,
+                rgba(0, 0, 0, 0.2) 8px,
+                rgba(0, 0, 0, 0.2) 9px
+            );
+        }
+
+        /* RJ45 Connector */
+        .rj45-connector {
+            width: 16px;
+            height: 20px;
+            background: linear-gradient(180deg, #444 0%, #222 50%, #111 100%);
+            border: 1px solid #00d4ff;
+            border-radius: 2px;
+            position: relative;
+            box-shadow: 0 0 5px rgba(0, 212, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .rj45-connector::before {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px;
+            height: 8px;
+            background: repeating-linear-gradient(90deg, #00d4ff 0px, #00d4ff 1px, transparent 1px, transparent 2px);
+            opacity: 0.6;
+        }
+
+        .rj45-connector::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px; height: 4px;
+            background: #00d4ff;
+            border-radius: 1px;
+            box-shadow: 0 0 3px rgba(0, 212, 255, 0.8);
+        }
+
+        /* Spark animation */
+        .cable-spark {
+            position: absolute;
+            width: 6px; height: 6px;
+            background: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff88, 0 0 20px #00d4ff, 0 0 30px rgba(0, 255, 136, 0.5);
+            animation: spark-flow 3s linear infinite;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spark-flow {
+            0% { left: 0%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        /* Server box */
+        .server-box {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+
+        .yaml-link {
+            display: block;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .yaml-label {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.8), rgba(0, 119, 190, 0.8));
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .yaml-link:hover .yaml-label {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 1), rgba(0, 255, 136, 0.8));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+        }
+
+        /* SQL-specific label gets a hot orange-red glow on hover */
+        .yaml-link.yaml-sql:hover .yaml-label {
+            background: linear-gradient(135deg, rgba(255, 80, 0, 0.9), rgba(0, 212, 255, 0.8));
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6), 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .server-icon-box {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(15, 52, 96, 0.8));
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            padding: 25px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .server-icon-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .yaml-link:hover .server-icon-box {
+            border-color: rgba(0, 255, 136, 0.8);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .yaml-link.yaml-sql:hover .server-icon-box {
+            border-color: rgba(255, 80, 0, 0.8);
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.5), 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .server-icon-box img {
+            width: 60px; height: 60px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+        }
+
+        /* Responsive */
+        @media (max-width: 1300px) {
+            .server-network {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+            .cable-connection {
+                display: none;
+            }
+        }
+    </style>
+
+    <div class="yaml-skills-container">
+        <div class="server-network" id="serverNetwork">
+
+            <!-- Linux -->
+            <div class="server-box">
+                <a href="linux_resume_project_page.html" class="yaml-link yaml-linux">
+                    <div class="yaml-label">Linux YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                    </div>
+                </a>
+            </div>
+
+            <!-- HTML -->
+            <div class="server-box">
+                <a href="html_resume_project_page.html" class="yaml-link yaml-html">
+                    <div class="yaml-label">HTML YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                    </div>
+                </a>
+            </div>
+
+            <!-- Ansible -->
+            <div class="server-box">
+                <a href="ansible_resume_project_page.html" class="yaml-link yaml-ansible">
+                    <div class="yaml-label">Ansible YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" alt="Ansible">
+                    </div>
+                </a>
+            </div>
+
+            <!-- Remedy -->
+            <div class="server-box">
+                <a href="remedy_resume_project_page.html" class="yaml-link yaml-remedy">
+                    <div class="yaml-label">Remedy YAML</div>
+                    <div class="server-icon-box">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='8' fill='%231e90ff' opacity='0.15'/%3E%3Cpath d='M12 8 h36 l8 10 v34 H4 V18 Z' fill='%231e90ff' opacity='0.9'/%3E%3Ctext x='30' y='38' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='white'%3ER%3C/text%3E%3C/svg%3E" alt="Remedy">
+                    </div>
+                </a>
+            </div>
+
+            <!-- Hadoop -->
+            <div class="server-box">
+                <a href="hadoop_resume_project_page.html" class="yaml-link yaml-hadoop">
+                    <div class="yaml-label">Hadoop YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg" alt="Hadoop">
+                    </div>
+                </a>
+            </div>
+
+            <!-- Splunk -->
+            <div class="server-box">
+                <a href="splunk_resume_project_page.html" class="yaml-link yaml-splunk">
+                    <div class="yaml-label">Splunk YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/splunk/splunk-original.svg" alt="Splunk">
+                    </div>
+                </a>
+            </div>
+
+            <!-- ═══ SQL / ORACLE — NEW ═══ -->
+            <div class="server-box">
+                <a href="sql_resume_project_page.html" class="yaml-link yaml-sql">
+                    <div class="yaml-label">SQL YAML</div>
+                    <div class="server-icon-box">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="SQL / Oracle">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="skills-section">
+        <div class="skills-grid">
+
+            <div class="skill-category">
+                <h3><span class="icon">🧠</span> Linux/Unix & Cloud</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Linux/Unix Admin</span>
+                    <span class="skill-tag">Shell Scripting</span>
+                    <span class="skill-tag">VMware</span>
+                    <span class="skill-tag">Cloud Operations</span>
+                    <span class="skill-tag">Hadoop / Kafka / Zookeeper</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="icon">🔄</span> DevOps & Automation</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">GitLab</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">Ansible</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="icon">💾</span> Databases</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Oracle</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">PL/SQL</span>
+                    <span class="skill-tag">PowerShell</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="icon">📊</span> Monitoring & Analytics</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">New Relic</span>
+                    <span class="skill-tag">Kibana</span>
+                    <span class="skill-tag">Elasticsearch</span>
+                    <span class="skill-tag">Catchpoint</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="icon">⚙️</span> App Tier & Diagnostics</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Apache WebLogic</span>
+                    <span class="skill-tag">JVM Diagnostics</span>
+                    <span class="skill-tag">Thread/Heap Dumps</span>
+                    <span class="skill-tag">Root Cause Analysis</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="icon">📋</span> ITSM & Operations</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">BMC Remedy (ITIL)</span>
+                    <span class="skill-tag">Jira Service Management</span>
+                    <span class="skill-tag">Runbook Automation</span>
+                    <span class="skill-tag">Incident & Change Management</span>
+                    <span class="skill-tag">SLA Compliance / ITIL Framework</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="experience-section" id="experience">
+        <div class="experience-container">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title">Tier 2 Production / Application Support Engineer</h3>
+                                <p class="experience-company">Verizon | Irving, TX</p>
+                            </div>
+                            <p class="experience-duration">May 2020 – Aug 2025</p>
+                        </div>
+                        <div class="experience-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🚨</span>
+                                <p class="highlight-text">Overhauled Sev-1 incident protocols, reducing MTTR by 85% across 72+ critical applications</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">☁️</span>
+                                <p class="highlight-text">Architected IaaS and PaaS based cloud Hadoop operations, achieving 10% reduction in downtime and 50% decrease in defects</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🔄</span>
+                                <p class="highlight-text">Streamlined deployment workflows using GitLab, Jenkins, and Ansible, ensuring 99% system availability</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title">Senior Systems Integration Engineer</h3>
+                                <p class="experience-company">TEOCO Corporation | Dallas, TX</p>
+                            </div>
+                            <p class="experience-duration">Jan 2013 – Dec 2019</p>
+                        </div>
+                        <div class="experience-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🔧</span>
+                                <p class="highlight-text">Led migration of AT&T Linux system platforms, cutting resolution times by 80%</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">📊</span>
+                                <p class="highlight-text">Developed automated ETL scripts and PL/SQL queries, increasing operational visibility by 30%</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">✅</span>
+                                <p class="highlight-text">Maintained 98% SLA adherence rate managing BSS billing and CRM systems on Apache WebLogic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title">Database Architect</h3>
+                                <p class="experience-company">AIRCOM International (Now TEOCO) | Dallas, TX</p>
+                            </div>
+                            <p class="experience-duration">Jun 2009 – Jan 2013</p>
+                        </div>
+                        <div class="experience-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">💾</span>
+                                <p class="highlight-text">Implemented metadata archiving for 1M+ files daily, enhancing data retrieval efficiency</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">⚡</span>
+                                <p class="highlight-text">Developed HDFS storage solutions reducing query latency by 25%</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🔒</span>
+                                <p class="highlight-text">Deployed GSM/UMTS/LTE OSS solutions using VMware with secure FTP, SSH, and SMTP protocols</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div>
+                                <h3 class="experience-title">Implementation Solutions Engineer</h3>
+                                <p class="experience-company">AT&T | Richardson, TX</p>
+                            </div>
+                            <p class="experience-duration">Apr 1999 – Apr 2009</p>
+                        </div>
+                        <div class="experience-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">💳</span>
+                                <p class="highlight-text">Designed custom billing tools for AT&T and Cingular Wireless using Oracle and Shell scripting, supporting 24/7 billing cycles</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">📊</span>
+                                <p class="highlight-text">Performed complex ETL processing for 3GPP data (HSS/HLR/MME) repositories for strategic planning</p>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🔒</span>
+                                <p class="highlight-text">Enforced strict SOX compliance and enterprise security protocols across provisioning and GRC activities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="landing_page.html" class="back-button" style="position: fixed; top: 30px; left: 30px; padding: 15px 30px; background: rgba(0, 242, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(0, 242, 255, 0.5); border-radius: 50px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; z-index: 1000;">← Back to Portfolio</a>
+
+    <div style="text-align:center; margin-top:60px; padding-bottom: 60px;">
+        <a href="landing_
