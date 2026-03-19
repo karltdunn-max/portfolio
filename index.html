@@ -4,55 +4,42 @@
   <meta charset="UTF-8" />
   <title>Welcome – Choose Your Path</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
     :root {
       --neon-cyan: #00eaff;
+      --neon-green: #00ff88;
       --border-glow: rgba(0, 234, 255, 0.5);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      height: 100%;
-      width: 100%;
+      height: 100%; width: 100%;
       background: #000;
       font-family: 'Courier New', monospace;
       overflow: hidden;
     }
-
     body {
       animation: fadeIn 1.5s ease-out forwards;
       opacity: 0;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; }
-      to { opacity: 1; }
+      to   { opacity: 1; }
     }
-
     .hero {
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
     }
-
     .hero img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: contain;
       animation: slowZoom 18s ease-in-out infinite alternate;
     }
-
     @keyframes slowZoom {
       from { transform: scale(1); }
-      to { transform: scale(1.06); }
+      to   { transform: scale(1.06); }
     }
 
+    /* ── Button bar ── */
     .button-bar {
       position: absolute;
       bottom: 40px;
@@ -63,13 +50,14 @@
       z-index: 10;
       opacity: 0;
       animation: slideUp 1.4s ease-out forwards 1.4s;
+      align-items: center;
     }
-
     @keyframes slideUp {
       from { opacity: 0; transform: translate(-50%, 40px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
+      to   { opacity: 1; transform: translate(-50%, 0); }
     }
 
+    /* ── Base button ── */
     .btn {
       padding: 14px 32px;
       border-radius: 40px;
@@ -86,14 +74,13 @@
       backdrop-filter: blur(4px);
       box-shadow: 0 0 15px var(--border-glow);
       animation: pulseGlow 3s infinite ease-in-out;
+      font-family: 'Courier New', monospace;
     }
-
     @keyframes pulseGlow {
-      0% { box-shadow: 0 0 12px var(--border-glow); }
-      50% { box-shadow: 0 0 28px var(--neon-cyan); }
+      0%   { box-shadow: 0 0 12px var(--border-glow); }
+      50%  { box-shadow: 0 0 28px var(--neon-cyan); }
       100% { box-shadow: 0 0 12px var(--border-glow); }
     }
-
     .btn:hover {
       background: var(--neon-cyan);
       color: #000;
@@ -101,22 +88,306 @@
       box-shadow: 0 0 35px var(--neon-cyan);
     }
 
+    /* ── Music button — idle ── */
+    #musicBtn {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    /* ── Music button — playing state ── */
+    #musicBtn.playing {
+      border-color: var(--neon-green);
+      color: var(--neon-green);
+      background: rgba(0, 255, 136, 0.08);
+      animation: musicPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes musicPulse {
+      0%,100% { box-shadow: 0 0 18px rgba(0,255,136,0.5); }
+      50%      { box-shadow: 0 0 36px rgba(0,255,136,0.9), 0 0 60px rgba(0,255,136,0.4); }
+    }
+    #musicBtn.playing:hover {
+      background: var(--neon-green);
+      color: #000;
+      box-shadow: 0 0 40px var(--neon-green);
+    }
+
+    /* ── Equalizer bars (visible only when playing) ── */
+    .eq-bars {
+      display: none;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    #musicBtn.playing .eq-bars { display: inline-flex; }
+    .eq-bar {
+      width: 4px;
+      background: var(--neon-green);
+      border-radius: 2px;
+      animation: eqAnim 0.5s ease-in-out infinite alternate;
+    }
+    .eq-bar:nth-child(1) { animation-duration: 0.45s; animation-delay: 0.00s; }
+    .eq-bar:nth-child(2) { animation-duration: 0.38s; animation-delay: 0.10s; }
+    .eq-bar:nth-child(3) { animation-duration: 0.55s; animation-delay: 0.20s; }
+    .eq-bar:nth-child(4) { animation-duration: 0.32s; animation-delay: 0.05s; }
+    @keyframes eqAnim {
+      from { height: 3px; }
+      to   { height: 17px; }
+    }
+
     @media (max-width: 600px) {
       .button-bar { flex-direction: column; gap: 12px; }
     }
   </style>
 </head>
-
 <body>
-
   <div class="hero">
     <img src="skills_demo_banner_v2.png" alt="Portfolio Banner">
 
     <div class="button-bar">
-      <a href="cyberpunk_shooter.html" class="btn">▶ Launch Simulation</a>
-      <a href="landing_page.html" class="btn">🏠 View Portfolio</a>
+      <a href="cyberpunk_shooter.html" class="btn">&#9654; Launch Simulation</a>
+      <a href="landing_page.html"      class="btn">&#127968; View Portfolio</a>
+      <button id="musicBtn" class="btn" onclick="toggleMusic()">
+        <span class="label">&#127925; Music</span>
+        <span class="eq-bars">
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+        </span>
+      </button>
     </div>
   </div>
 
+  <!-- ================================================================
+       SYNTHWAVE MUSIC ENGINE — Web Audio API
+       Zero external files. Works on GitHub Pages with no server needed.
+       Procedural cyberpunk/synthwave loop: drums, bass, melody, pads.
+       ================================================================ -->
+  <script>
+  (function () {
+    let audioCtx = null;
+    let masterGain = null;
+    let isPlaying = false;
+    let loopTimeout = null;
+    let scheduledNodes = [];
+
+    const BPM  = 118;
+    const BEAT = 60 / BPM;
+    const BAR  = BEAT * 4;
+
+    // A minor pentatonic frequencies
+    const N = {
+      A2:110.00, E3:164.81, G3:196.00, A3:220.00,
+      C4:261.63, D4:293.66, E4:329.63, G4:392.00,
+      A4:440.00, C5:523.25, D5:587.33, E5:659.25
+    };
+
+    // [freq, beat-offset, duration-in-beats]
+    const BASS = [
+      [N.A2, 0,   1.8], [N.A2, 2,   0.8],
+      [N.E3, 2.5, 0.8], [N.G3, 3,   0.8],
+      [N.A2, 4,   1.8], [N.A2, 6,   0.8],
+      [N.D4, 6.5, 0.8], [N.E3, 7,   0.9],
+    ];
+
+    const MELODY = [
+      [N.A4, 0,   0.3], [N.C5, 0.5, 0.3],
+      [N.E5, 1,   0.3], [N.A4, 1.5, 0.3],
+      [N.G4, 2,   0.3], [N.E4, 2.5, 0.3],
+      [N.D4, 3,   0.3], [N.E4, 3.5, 0.3],
+      [N.A4, 4,   0.3], [N.C5, 4.5, 0.3],
+      [N.D5, 5,   0.4], [N.C5, 5.5, 0.3],
+      [N.A4, 6,   0.3], [N.G4, 6.5, 0.3],
+      [N.E4, 7,   0.3], [N.A4, 7.5, 0.5],
+    ];
+
+    function buildReverb(ctx) {
+      const len = ctx.sampleRate * 1.8;
+      const buf = ctx.createBuffer(2, len, ctx.sampleRate);
+      for (let c = 0; c < 2; c++) {
+        const d = buf.getChannelData(c);
+        for (let i = 0; i < len; i++)
+          d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.2);
+      }
+      return buf;
+    }
+
+    function initAudio() {
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.52;
+
+      const comp = audioCtx.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      comp.attack.value = 0.003; comp.release.value = 0.25;
+
+      const reverb     = audioCtx.createConvolver();
+      reverb.buffer    = buildReverb(audioCtx);
+      const reverbGain = audioCtx.createGain();
+      reverbGain.gain.value = 0.22;
+
+      masterGain.connect(comp);
+      comp.connect(audioCtx.destination);
+      masterGain.connect(reverb);
+      reverb.connect(reverbGain);
+      reverbGain.connect(audioCtx.destination);
+    }
+
+    function note(freq, start, dur, type, vol, cutoff) {
+      const osc    = audioCtx.createOscillator();
+      const gain   = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, start);
+
+      // subtle vibrato
+      const vib  = audioCtx.createOscillator();
+      const vgn  = audioCtx.createGain();
+      vib.frequency.value = 5.5; vgn.gain.value = 1.1;
+      vib.connect(vgn); vgn.connect(osc.frequency);
+      vib.start(start); vib.stop(start + dur + 0.1);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(cutoff || 2400, start);
+      filter.Q.value = 1.8;
+
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(vol, start + 0.04);
+      gain.gain.setValueAtTime(vol, start + dur * 0.65);
+      gain.gain.linearRampToValueAtTime(0, start + dur);
+
+      osc.connect(filter); filter.connect(gain); gain.connect(masterGain);
+      osc.start(start); osc.stop(start + dur + 0.06);
+      scheduledNodes.push(osc, vib);
+    }
+
+    function kick(t) {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(160, t);
+      o.frequency.exponentialRampToValueAtTime(40, t + 0.08);
+      g.gain.setValueAtTime(0.85, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.38);
+      o.connect(g); g.connect(masterGain);
+      o.start(t); o.stop(t + 0.42);
+      scheduledNodes.push(o);
+    }
+
+    function snare(t) {
+      // tone
+      const o = audioCtx.createOscillator();
+      const og = audioCtx.createGain();
+      o.type = 'triangle'; o.frequency.value = 210;
+      og.gain.setValueAtTime(0.38, t);
+      og.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+      o.connect(og); og.connect(masterGain);
+      o.start(t); o.stop(t + 0.2);
+      // noise
+      const len = audioCtx.sampleRate * 0.22;
+      const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+      const d   = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      const src = audioCtx.createBufferSource();
+      const f   = audioCtx.createBiquadFilter();
+      const ng  = audioCtx.createGain();
+      src.buffer = buf; f.type = 'bandpass';
+      f.frequency.value = 2800; f.Q.value = 0.9;
+      ng.gain.setValueAtTime(0.32, t);
+      ng.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      src.connect(f); f.connect(ng); ng.connect(masterGain);
+      src.start(t);
+      scheduledNodes.push(o, src);
+    }
+
+    function hat(t, accent) {
+      const len = audioCtx.sampleRate * 0.07;
+      const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+      const d   = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      const src = audioCtx.createBufferSource();
+      const f   = audioCtx.createBiquadFilter();
+      const g   = audioCtx.createGain();
+      src.buffer = buf; f.type = 'highpass'; f.frequency.value = 7200;
+      g.gain.setValueAtTime(accent ? 0.17 : 0.08, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+      src.connect(f); f.connect(g); g.connect(masterGain);
+      src.start(t);
+      scheduledNodes.push(src);
+    }
+
+    function scheduleLoop(start) {
+      const len = BAR * 2;
+
+      for (let b = 0; b < 2; b++) {
+        const t = start + b * BAR;
+        kick(t); kick(t + BEAT * 2);
+        snare(t + BEAT); snare(t + BEAT * 3);
+        for (let h = 0; h < 8; h++) hat(t + h * BEAT * 0.5, h % 2 === 0);
+      }
+
+      BASS.forEach(([f, off, dur])    => note(f, start + off * BEAT, dur * BEAT, 'sawtooth', 0.26, 580));
+      MELODY.forEach(([f, off, dur])  => note(f, start + off * BEAT, dur * BEAT, 'square',   0.11, 3400));
+
+      // pad wash
+      [N.A3, N.C4, N.E4, N.G4].forEach((f, i) =>
+        note(f, start + i * 0.05, len, 'sine', 0.065, 1100)
+      );
+
+      return len;
+    }
+
+    function startMusic() {
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      isPlaying = true;
+      let next = audioCtx.currentTime + 0.05;
+
+      (function loop() {
+        if (!isPlaying) return;
+        const dur = scheduleLoop(next);
+        next += dur;
+        loopTimeout = setTimeout(loop, (dur - 0.3) * 1000);
+      })();
+
+      setUI(true);
+    }
+
+    function stopMusic() {
+      isPlaying = false;
+      if (loopTimeout) clearTimeout(loopTimeout);
+      if (masterGain) {
+        masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+        masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
+      }
+      setTimeout(() => {
+        scheduledNodes.forEach(n => { try { n.stop(); } catch(e){} });
+        scheduledNodes = [];
+        if (masterGain) masterGain.gain.setValueAtTime(0.52, audioCtx.currentTime);
+      }, 460);
+      setUI(false);
+    }
+
+    function setUI(playing) {
+      const btn = document.getElementById('musicBtn');
+      if (!btn) return;
+      if (playing) {
+        btn.classList.add('playing');
+        btn.querySelector('span.label').textContent = '\u23F9 Stop';
+      } else {
+        btn.classList.remove('playing');
+        btn.querySelector('span.label').textContent = '\uD83C\uDFB5 Music';
+      }
+    }
+
+    window.toggleMusic = function () {
+      isPlaying ? stopMusic() : startMusic();
+    };
+  })();
+  </script>
 </body>
 </html>
