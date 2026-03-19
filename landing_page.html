@@ -207,6 +207,59 @@
             transform: translateY(-5px);
         }
 
+        /* =============================================
+           MUSIC BUTTON — PLAYING STATE STYLES
+           ============================================= */
+        #musicBtn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #musicBtn.playing {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: #00ff88;
+            color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.2);
+            animation: musicPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.7), 0 0 60px rgba(0, 255, 136, 0.4); }
+        }
+
+        /* Equalizer bars shown when playing */
+        .eq-bars {
+            display: none;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+            margin-left: 8px;
+        }
+
+        #musicBtn.playing .eq-bars {
+            display: inline-flex;
+        }
+
+        .eq-bar {
+            width: 4px;
+            background: #00ff88;
+            border-radius: 2px;
+            animation: eqAnim 0.6s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { animation-duration: 0.5s; animation-delay: 0.0s; }
+        .eq-bar:nth-child(2) { animation-duration: 0.4s; animation-delay: 0.1s; }
+        .eq-bar:nth-child(3) { animation-duration: 0.6s; animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { animation-duration: 0.3s; animation-delay: 0.05s; }
+
+        @keyframes eqAnim {
+            from { height: 4px; }
+            to   { height: 18px; }
+        }
+
+        /* ============================================= */
+
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -557,7 +610,7 @@
                 </div>
                 <div class="contact-item">
                     <span>✉️</span>
-                    <a href="/cdn-cgi/l/email-protection#ea818b9886c49ec48e9f8484aa8d878b8386c4898587"><span class="__cf_email__" data-cfemail="563d37243a7822783223383816313b373f3a7835393b">[email&#160;protected]</span></a>
+                    <a href="mailto:karltdunn@gmail.com">karltdunn@gmail.com</a>
                 </div>
                 <div class="contact-item">
                     <span>💼</span>
@@ -566,8 +619,16 @@
             </div>
 
             <div class="cta-buttons">
-                <a href="#experience" class="cta-button cta-primary">View Experience</a>
-                <a href="#skills-section" class="cta-button cta-secondary">Explore Technical Skills</a>
+                <a href="Resume_Page.html" class="cta-button cta-primary">📄 View Resume</a>
+                <button class="cta-button cta-secondary" id="musicBtn" onclick="toggleMusic()">
+                    🎵 Play Music
+                    <span class="eq-bars">
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                    </span>
+                </button>
             </div>
         </div>
 
@@ -617,7 +678,6 @@
             padding: 0 20px;
         }
 
-        /* Cable container */
         .cable-connection {
             position: absolute;
             top: 50%;
@@ -628,7 +688,6 @@
             align-items: center;
         }
 
-        /* Main cable body */
         .cable-body {
             height: 8px;
             background: linear-gradient(180deg, 
@@ -658,7 +717,6 @@
             );
         }
 
-        /* RJ45 Connector */
         .rj45-connector {
             width: 16px;
             height: 20px;
@@ -690,7 +748,6 @@
             box-shadow: 0 0 3px rgba(0, 212, 255, 0.8);
         }
 
-        /* Spark animation */
         .cable-spark {
             position: absolute;
             width: 6px; height: 6px;
@@ -709,7 +766,6 @@
             100% { left: 100%; opacity: 0; }
         }
 
-        /* Server box */
         .server-box {
             position: relative;
             z-index: 10;
@@ -743,7 +799,6 @@
             box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
         }
 
-        /* SQL-specific label gets a hot orange-red glow on hover */
         .yaml-link.yaml-sql:hover .yaml-label {
             background: linear-gradient(135deg, rgba(255, 80, 0, 0.9), rgba(0, 212, 255, 0.8));
             box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6), 0 0 15px rgba(0, 212, 255, 0.4);
@@ -797,7 +852,6 @@
             filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
         }
 
-        /* Responsive */
         @media (max-width: 1300px) {
             .server-network {
                 flex-wrap: wrap;
@@ -872,7 +926,7 @@
                 </a>
             </div>
 
-            <!-- ═══ SQL / ORACLE — NEW ═══ -->
+            <!-- SQL / Oracle -->
             <div class="server-box">
                 <a href="sql_resume_project_page.html" class="yaml-link yaml-sql">
                     <div class="yaml-label">SQL YAML</div>
@@ -1069,4 +1123,335 @@
     <a href="landing_page.html" class="back-button" style="position: fixed; top: 30px; left: 30px; padding: 15px 30px; background: rgba(0, 242, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(0, 242, 255, 0.5); border-radius: 50px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; z-index: 1000;">← Back to Portfolio</a>
 
     <div style="text-align:center; margin-top:60px; padding-bottom: 60px;">
-        <a href="landing_
+        <a href="Resume_Page.html" class="cta-button cta-primary" style="margin-right:20px;">📄 View Resume</a>
+        <button class="cta-button cta-secondary" onclick="toggleMusic()" id="musicBtn2">🎵 Play Music</button>
+    </div>
+
+    <!-- ============================================================
+         SYNTHWAVE MUSIC ENGINE — Web Audio API
+         No external files. Works 100% on GitHub Pages.
+         Procedurally generates a cyberpunk/synthwave loop.
+         ============================================================ -->
+    <script>
+    (function() {
+        let audioCtx = null;
+        let masterGain = null;
+        let isPlaying = false;
+        let scheduledNodes = [];
+        let loopTimeout = null;
+
+        // BPM and timing
+        const BPM = 120;
+        const BEAT = 60 / BPM;       // seconds per beat
+        const BAR  = BEAT * 4;       // seconds per bar
+
+        // Synthwave note frequencies (pentatonic minor, key of A)
+        const NOTES = {
+            A2: 110.00, E3: 164.81, G3: 196.00, A3: 220.00,
+            C4: 261.63, D4: 293.66, E4: 329.63, G4: 392.00,
+            A4: 440.00, C5: 523.25, D5: 587.33, E5: 659.25
+        };
+
+        // Bass line pattern (note, beat offset, duration in beats)
+        const BASS_PATTERN = [
+            [NOTES.A2, 0,   1.8],
+            [NOTES.A2, 2,   0.8],
+            [NOTES.E3, 2.5, 0.8],
+            [NOTES.G3, 3,   0.8],
+            [NOTES.A2, 4,   1.8],
+            [NOTES.A2, 6,   0.8],
+            [NOTES.D4, 6.5, 0.8],
+            [NOTES.E3, 7,   0.9],
+        ];
+
+        // Melody arpeggio pattern
+        const MELODY_PATTERN = [
+            [NOTES.A4, 0,    0.3],
+            [NOTES.C5, 0.5,  0.3],
+            [NOTES.E5, 1,    0.3],
+            [NOTES.A4, 1.5,  0.3],
+            [NOTES.G4, 2,    0.3],
+            [NOTES.E4, 2.5,  0.3],
+            [NOTES.D4, 3,    0.3],
+            [NOTES.E4, 3.5,  0.3],
+            [NOTES.A4, 4,    0.3],
+            [NOTES.C5, 4.5,  0.3],
+            [NOTES.D5, 5,    0.4],
+            [NOTES.C5, 5.5,  0.3],
+            [NOTES.A4, 6,    0.3],
+            [NOTES.G4, 6.5,  0.3],
+            [NOTES.E4, 7,    0.3],
+            [NOTES.A4, 7.5,  0.5],
+        ];
+
+        function initAudio() {
+            if (audioCtx) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Master gain (volume)
+            masterGain = audioCtx.createGain();
+            masterGain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+
+            // Compressor to prevent clipping
+            const compressor = audioCtx.createDynamicsCompressor();
+            compressor.threshold.value = -18;
+            compressor.knee.value = 6;
+            compressor.ratio.value = 4;
+            compressor.attack.value = 0.003;
+            compressor.release.value = 0.25;
+
+            // Reverb (convolver with synthetic impulse)
+            const reverb = audioCtx.createConvolver();
+            reverb.buffer = buildReverb(audioCtx, 1.5, 2, false);
+
+            const reverbGain = audioCtx.createGain();
+            reverbGain.gain.value = 0.25;
+
+            masterGain.connect(compressor);
+            compressor.connect(audioCtx.destination);
+            masterGain.connect(reverb);
+            reverb.connect(reverbGain);
+            reverbGain.connect(audioCtx.destination);
+        }
+
+        // Build a simple reverb impulse response
+        function buildReverb(ctx, duration, decay, reverse) {
+            const rate     = ctx.sampleRate;
+            const length   = rate * duration;
+            const impulse  = ctx.createBuffer(2, length, rate);
+            for (let i = 0; i < 2; i++) {
+                const channel = impulse.getChannelData(i);
+                for (let j = 0; j < length; j++) {
+                    const n = reverse ? length - j : j;
+                    channel[j] = (Math.random() * 2 - 1) * Math.pow(1 - n / length, decay);
+                }
+            }
+            return impulse;
+        }
+
+        // Play a single synth note
+        function playNote(freq, startTime, duration, type, gainVal, filterFreq) {
+            const osc  = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+
+            osc.type = type || 'sawtooth';
+            osc.frequency.setValueAtTime(freq, startTime);
+
+            // Slight pitch vibrato for warmth
+            const vibrato = audioCtx.createOscillator();
+            const vibratoGain = audioCtx.createGain();
+            vibrato.frequency.value = 5.5;
+            vibratoGain.gain.value  = 1.2;
+            vibrato.connect(vibratoGain);
+            vibratoGain.connect(osc.frequency);
+            vibrato.start(startTime);
+            vibrato.stop(startTime + duration + 0.1);
+
+            // Low-pass filter for warmth
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(filterFreq || 2200, startTime);
+            filter.Q.value = 2;
+
+            // ADSR envelope
+            gain.gain.setValueAtTime(0, startTime);
+            gain.gain.linearRampToValueAtTime(gainVal, startTime + 0.04);
+            gain.gain.setValueAtTime(gainVal, startTime + duration * 0.6);
+            gain.gain.linearRampToValueAtTime(0, startTime + duration);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+
+            osc.start(startTime);
+            osc.stop(startTime + duration + 0.05);
+
+            scheduledNodes.push(osc, vibrato);
+        }
+
+        // Play kick drum
+        function playKick(startTime) {
+            const osc  = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(160, startTime);
+            osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.08);
+
+            gain.gain.setValueAtTime(0.8, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+
+            osc.connect(gain);
+            gain.connect(masterGain);
+            osc.start(startTime);
+            osc.stop(startTime + 0.4);
+            scheduledNodes.push(osc);
+        }
+
+        // Play hi-hat (noise burst)
+        function playHat(startTime, accent) {
+            const bufSize = audioCtx.sampleRate * 0.08;
+            const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+
+            const src    = audioCtx.createBufferSource();
+            const filter = audioCtx.createBiquadFilter();
+            const gain   = audioCtx.createGain();
+
+            src.buffer = buf;
+            filter.type = 'highpass';
+            filter.frequency.value = 7000;
+
+            gain.gain.setValueAtTime(accent ? 0.18 : 0.09, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
+
+            src.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+            src.start(startTime);
+            scheduledNodes.push(src);
+        }
+
+        // Play snare
+        function playSnare(startTime) {
+            // Tone component
+            const osc  = audioCtx.createOscillator();
+            const og   = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.value = 220;
+            og.gain.setValueAtTime(0.4, startTime);
+            og.gain.exponentialRampToValueAtTime(0.001, startTime + 0.15);
+            osc.connect(og); og.connect(masterGain);
+            osc.start(startTime); osc.stop(startTime + 0.2);
+
+            // Noise component
+            const bufSize = audioCtx.sampleRate * 0.2;
+            const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+            const src  = audioCtx.createBufferSource();
+            const f    = audioCtx.createBiquadFilter();
+            const ng   = audioCtx.createGain();
+            src.buffer = buf;
+            f.type = 'bandpass'; f.frequency.value = 3000; f.Q.value = 0.8;
+            ng.gain.setValueAtTime(0.35, startTime);
+            ng.gain.exponentialRampToValueAtTime(0.001, startTime + 0.18);
+            src.connect(f); f.connect(ng); ng.connect(masterGain);
+            src.start(startTime);
+
+            scheduledNodes.push(osc, src);
+        }
+
+        // Schedule one full 2-bar loop
+        function scheduleLoop(startTime) {
+            const loopLength = BAR * 2; // 2 bars
+
+            // Drums: kick on beats 1 and 3, snare on 2 and 4
+            for (let bar = 0; bar < 2; bar++) {
+                const b = startTime + bar * BAR;
+                playKick(b);
+                playKick(b + BEAT * 2);
+                playSnare(b + BEAT);
+                playSnare(b + BEAT * 3);
+                // 8th-note hats
+                for (let h = 0; h < 8; h++) {
+                    playHat(b + h * BEAT * 0.5, h % 2 === 0);
+                }
+            }
+
+            // Bass line
+            BASS_PATTERN.forEach(([freq, beatOffset, durBeats]) => {
+                playNote(freq, startTime + beatOffset * BEAT, durBeats * BEAT, 'sawtooth', 0.28, 600);
+            });
+
+            // Melody arpeggio
+            MELODY_PATTERN.forEach(([freq, beatOffset, durBeats]) => {
+                playNote(freq, startTime + beatOffset * BEAT, durBeats * BEAT, 'square', 0.12, 3500);
+            });
+
+            // Pad chord wash (whole notes, low volume)
+            const padChord = [NOTES.A3, NOTES.C4, NOTES.E4, NOTES.G4];
+            padChord.forEach((freq, i) => {
+                playNote(freq, startTime + i * 0.04, loopLength, 'sine', 0.07, 1200);
+            });
+
+            return loopLength;
+        }
+
+        function startMusic() {
+            initAudio();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            isPlaying = true;
+
+            let nextLoop = audioCtx.currentTime + 0.05;
+
+            function scheduleNext() {
+                if (!isPlaying) return;
+                const dur = scheduleLoop(nextLoop);
+                nextLoop += dur;
+                // Re-schedule slightly before the loop ends
+                loopTimeout = setTimeout(scheduleNext, (dur - 0.3) * 1000);
+            }
+
+            scheduleNext();
+            updateUI(true);
+        }
+
+        function stopMusic() {
+            isPlaying = false;
+            if (loopTimeout) clearTimeout(loopTimeout);
+
+            // Fade out master gain then stop all nodes
+            if (masterGain) {
+                masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+                masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
+            }
+
+            setTimeout(() => {
+                scheduledNodes.forEach(n => { try { n.stop(); } catch(e) {} });
+                scheduledNodes = [];
+                if (masterGain) masterGain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            }, 450);
+
+            updateUI(false);
+        }
+
+        function updateUI(playing) {
+            // Update both music buttons (hero + footer)
+            ['musicBtn', 'musicBtn2'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                if (playing) {
+                    btn.classList.add('playing');
+                    // Preserve eq-bars if present
+                    if (!btn.querySelector('.eq-bars')) {
+                        btn.innerHTML = '⏹ Stop Music <span class="eq-bars"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span>';
+                    } else {
+                        btn.childNodes[0].textContent = '⏹ Stop Music ';
+                    }
+                } else {
+                    btn.classList.remove('playing');
+                    if (!btn.querySelector('.eq-bars')) {
+                        btn.innerHTML = '🎵 Play Music';
+                    } else {
+                        btn.childNodes[0].textContent = '🎵 Play Music';
+                    }
+                }
+            });
+        }
+
+        // Global toggle function called by onclick
+        window.toggleMusic = function() {
+            if (isPlaying) {
+                stopMusic();
+            } else {
+                startMusic();
+            }
+        };
+
+    })();
+    </script>
+
+</body>
+</html>
