@@ -268,11 +268,11 @@ const pips=[0,1,2].map(i=>document.getElementById('pip'+i));
 
 // ── CONSTANTS ──
 const MAX_DEMOTION=10;
-const SHOOT_DELAY=300;
+const SHOOT_DELAY=250;
 
 // ── STATE ──
 let incidents=[],forbidden=[],particles=[],shockwaves=[],trails=[];
-let score=0,misses=0,combo=0,lives=3,wave=1,waveKills=0,killsToNext=10;
+let score=0,misses=0,combo=0,lives=3,wave=1,waveKills=0,killsToNext=8;
 let demotion=0;
 let gameOver=false,gameRunning=false;
 let baseSpawnInterval=1300,spawnInterval=1300,forbiddenChance=0.40,speedMult=1.0;
@@ -284,17 +284,17 @@ let shootCD=0,missStreak=0;
 let bgTime=0,gridOffset=0,alarmOn=0;
 
 // ── WAVE TIMER ──
-let waveTimeMax=60000;   // ms
-let waveTimeLeft=60000;
+let waveTimeMax=75000;   // ms
+let waveTimeLeft=75000;
 
 function waveTargetDuration(){
-  // Per-target timer: 8s on wave 1, -0.3s per wave, floor 3s
-  return Math.max(3000, 8000 - (wave-1)*300);
+  // Per-target timer: 10s on wave 1, -0.4s per wave, floor 4s
+  return Math.max(4000, 10000 - (wave-1)*400);
 }
 
 function waveTimerMax(){
-  // Global wave timer: 60s on wave 1, -3s per wave, floor 25s
-  return Math.max(25000, 60000 - (wave-1)*3000);
+  // Global wave timer: 75s on wave 1, -3s per wave, floor 30s
+  return Math.max(30000, 75000 - (wave-1)*3000);
 }
 
 // ── STARS ──
@@ -322,11 +322,11 @@ function log(lvl,msg){
 
 // ── MODES ──
 const MODES={
-  oncall:      {label:'ON-CALL SIMULATION',  si:1200,fc:0.40,sm:1.0},
-  warroom:     {label:'WAR ROOM MODE',       si:850, fc:0.55,sm:1.3},
-  changewindow:{label:'CHANGE WINDOW',       si:1000,fc:0.62,sm:1.15},
-  compliance:  {label:'COMPLIANCE GAUNTLET', si:1100,fc:0.80,sm:0.95},
-  chaos:       {label:'CHAOS ENGINEERING',   si:520, fc:0.62,sm:1.75},
+  oncall:      {label:'ON-CALL SIMULATION',  si:1400,fc:0.25,sm:0.9},
+  warroom:     {label:'WAR ROOM MODE',       si:1000,fc:0.38,sm:1.1},
+  changewindow:{label:'CHANGE WINDOW',       si:1200,fc:0.42,sm:1.0},
+  compliance:  {label:'COMPLIANCE GAUNTLET', si:1300,fc:0.55,sm:0.9},
+  chaos:       {label:'CHAOS ENGINEERING',   si:650, fc:0.45,sm:1.5},
 };
 
 document.querySelectorAll('.menuButton').forEach(btn=>{
@@ -398,13 +398,13 @@ function loseLife(reason){
 
 // ── WAVE ADVANCE / FAIL ──
 function advanceWave(){
-  wave++;waveKills=0;killsToNext=10+wave*3;
+  wave++;waveKills=0;killsToNext=8+wave*1;
   waveTimeMax=waveTimerMax();waveTimeLeft=waveTimeMax;
   waveNumEl.textContent=wave;
   waveProgressEl.textContent='0 / '+killsToNext;
-  spawnInterval=Math.max(280,baseSpawnInterval-wave*85);
-  forbiddenChance=Math.min(0.88,forbiddenChance+0.06);
-  speedMult+=0.13;
+  spawnInterval=Math.max(400,baseSpawnInterval-wave*60);
+  forbiddenChance=Math.min(0.70,forbiddenChance+0.04);
+  speedMult+=0.08;
   showBanner('WAVE '+wave,'#ffb300');
   log('warning','WAVE '+wave+' | spd:'+speedMult.toFixed(2)+' | '+Math.round(waveTimeMax/1000)+'s timer');
   const n=Math.min(wave+1,7);
@@ -417,7 +417,7 @@ function waveTimerExpired(){
   waveKills=0;
   waveProgressEl.textContent='0 / '+killsToNext;
   waveTimeLeft=waveTimeMax;
-  addDemotion(3,'Wave timer expired — '+killsToNext+' targets not cleared in time');
+  addDemotion(2,'Wave timer expired — '+killsToNext+' targets not cleared in time');
   // Nuke all current incidents (they scatter)
   incidents.forEach(inc=>spawnExplosion(inc.x,inc.y,'#ff4400','#ff1744',false));
   incidents=[];
@@ -452,9 +452,9 @@ function createIncident(){
   const baseR=Math.max(14,26-wave*0.9);
   const radius=baseR+Math.random()*8;
   const {x,y,vx,vy}=spawnEdge(radius);
-  const homingP=wave>=6?0.62:wave>=3?0.32:0;
+  const homingP=wave>=8?0.55:wave>=4?0.22:0;
   const homing=Math.random()<homingP;
-  const decoy=!homing&&wave>=5&&Math.random()<0.18;
+  const decoy=!homing&&wave>=7&&Math.random()<0.15;
   // Every target gets its own countdown
   const tDur=waveTargetDuration();
   incidents.push({
@@ -672,7 +672,7 @@ function shoot(){
     missesEl.textContent=misses;
     missBar.style.width=Math.min(misses*3,100)+'%';
     combo=0;comboNumEl.textContent='x0';comboNumEl.classList.remove('show');
-    if(missStreak>=4){
+    if(missStreak>=6){
       addDemotion(1,missStreak+' consecutive misses');
       missStreak=0;
     }
@@ -754,7 +754,7 @@ function update(t,dt){
       inc.alive=false;
       if(!inc.decoy){
         combo=0;comboNumEl.textContent='x0';comboNumEl.classList.remove('show');
-        addDemotion(1,'Incident escaped: '+inc.label);
+        log('warning','! Escaped: '+inc.label);
       }
     }
   });
