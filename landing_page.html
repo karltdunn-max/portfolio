@@ -609,9 +609,9 @@
                     <a href="tel:469-219-1153">469-219-1153</a>
                 </div>
                 <div class="contact-item">
-                    <span>✉️</span>
-                    <a href="mailto:karltdunn@gmail.com">karltdunn@gmail.com</a>
-                </div>
+    <span>✉️</span>
+    <a id="emailLink" href="#">karltdunn@gmail.com</a>
+</div>
                 <div class="contact-item">
                     <span>💼</span>
                     <a href="https://linkedin.com/in/karltdunn" target="_blank">LinkedIn</a>
@@ -1453,5 +1453,12 @@
     })();
     </script>
 
+    <script>
+  const u = 'karltdunn';
+  const d = 'gmail.com';
+  const el = document.getElementById('emailLink');
+  el.href = 'mailto:' + u + '@' + d;
+</script>
+    
 </body>
 </html>
