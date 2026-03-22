@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,12 +155,13 @@
             </div>
             <div class="contact-info">
                 <div class="contact-item"><span>&#128241;</span><a href="tel:469-219-1153">469-219-1153</a></div>
-                <div class="contact-item"><span>&#9993;&#65039;</span><a id="emailLink" href="#">karltdunn@gmail.com</a></div>
+                <div class="contact-item"><span>&#9993;&#65039;</span><a id="emailLink" href="#"><span class="__cf_email__" data-cfemail="fb909a89978f9f8e9595bb9c969a9297d5989496">[email&#160;protected]</span></a></div>
                 <div class="contact-item"><span>&#128188;</span><a href="https://linkedin.com/in/karltdunn" target="_blank">LinkedIn</a></div>
             </div>
             <div class="cta-buttons">
+                <a href="landing_page.html" class="cta-button cta-primary">&#127968; Home</a>
                 <a href="#experience" class="cta-button cta-primary">&#128188; View Experience &#8595;</a>
-                                <button class="cta-button cta-secondary" id="musicBtn" onclick="toggleMusic()">
+                <button class="cta-button cta-secondary" id="musicBtn" onclick="toggleMusic()">
                     🎵 Play Music
                     <span class="eq-bars">
                         <span class="eq-bar"></span><span class="eq-bar"></span>
@@ -249,11 +251,12 @@
 
     <a href="landing_page.html" style="position:fixed;top:30px;left:30px;padding:15px 30px;background:rgba(0,242,255,0.2);backdrop-filter:blur(10px);border:2px solid rgba(0,242,255,0.5);border-radius:50px;color:white;text-decoration:none;font-weight:600;transition:all 0.3s ease;z-index:1000;">&#8592; Back to Portfolio</a>
 
-        <div style="text-align:center;margin-top:60px;padding-bottom:60px;">
+    <div style="text-align:center;margin-top:60px;padding-bottom:60px;">
+        <a href="landing_page.html" class="cta-button cta-primary" style="margin-right:20px;">&#127968; Home</a>
         <a href="#" class="cta-button cta-primary" style="margin-right:20px;">&#8679; Back to Top</a>
         <button class="cta-button cta-secondary" onclick="toggleMusic()" id="musicBtn2">🎵 Play Music</button>
     </div>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     (function(){
     let audioCtx=null,masterGain=null,isPlaying=false,scheduledNodes=[],loopTimeout=null;
     const BPM=120,BEAT=60/BPM,BAR=BEAT*4;
@@ -352,13 +355,4 @@
             }
         });
     }
-    window.toggleMusic=function(){if(isPlaying)stopMusic();else startMusic();};
-})();
-
-    </script>
-    <script>
-        const u='karltdunn',d='gmail.com',el=document.getElementById('emailLink');
-        if(el) el.href='mailto:'+u+'@'+d;
-    </script>
-</body>
-</html>
+    window.toggleMusic=function(){if(isPlaying)stopMusic();else star
