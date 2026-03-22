@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Karl Dunn - Senior Systems Integration Engineer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,7 +14,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated Hero Background */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -30,23 +25,13 @@
             padding: 60px 20px;
         }
 
-        /* Animated circuit board pattern */
         .circuit-line {
             position: absolute;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.3), transparent);
             animation: pulse 4s ease-in-out infinite;
         }
-
-        .circuit-line.horizontal {
-            height: 2px;
-            width: 100%;
-        }
-
-        .circuit-line.vertical {
-            width: 2px;
-            height: 100%;
-        }
-
+        .circuit-line.horizontal { height: 2px; width: 100%; }
+        .circuit-line.vertical   { width: 2px; height: 100%; }
         .circuit-line:nth-child(1) { top: 15%; animation-delay: 0s; }
         .circuit-line:nth-child(2) { top: 35%; animation-delay: 1s; }
         .circuit-line:nth-child(3) { top: 55%; animation-delay: 2s; }
@@ -54,525 +39,245 @@
         .circuit-line:nth-child(5) { left: 20%; animation-delay: 0.5s; }
         .circuit-line:nth-child(6) { left: 50%; animation-delay: 1.5s; }
         .circuit-line:nth-child(7) { left: 80%; animation-delay: 2.5s; }
+        @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:0.6} }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.6; }
-        }
+        .tech-float { position:absolute; font-size:30px; opacity:0.15; animation:float 8s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg)} 50%{transform:translateY(-30px) rotate(180deg)} }
+        .tech-float:nth-child(8)  { top:10%;    left:10%;   animation-delay:0s; }
+        .tech-float:nth-child(9)  { top:20%;    right:15%;  animation-delay:2s; }
+        .tech-float:nth-child(10) { bottom:15%; left:20%;   animation-delay:4s; }
+        .tech-float:nth-child(11) { bottom:25%; right:25%;  animation-delay:6s; }
 
-        /* Floating tech icons */
-        .tech-float {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0.15;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
-        .tech-float:nth-child(8) { top: 10%; left: 10%; animation-delay: 0s; }
-        .tech-float:nth-child(9) { top: 20%; right: 15%; animation-delay: 2s; }
-        .tech-float:nth-child(10) { bottom: 15%; left: 20%; animation-delay: 4s; }
-        .tech-float:nth-child(11) { bottom: 25%; right: 25%; animation-delay: 6s; }
-
-        /* Hero Content */
         .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 1200px;
+            position:relative; z-index:10; text-align:center; max-width:1200px;
             animation: fadeInUp 1s ease-out;
         }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .profile-section {
-            margin-bottom: 40px;
-        }
+        .profile-section { margin-bottom: 40px; }
 
         .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00d4ff, #0077be);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            font-size: 80px;
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
-            animation: float 4s ease-in-out infinite;
-            border: 5px solid rgba(0, 212, 255, 0.3);
+            width:180px; height:180px; border-radius:50%;
+            background: linear-gradient(135deg,#00d4ff,#0077be);
+            display:flex; align-items:center; justify-content:center;
+            margin:0 auto 30px; font-size:80px;
+            box-shadow:0 20px 60px rgba(0,212,255,0.4);
+            animation:float 4s ease-in-out infinite;
+            border:5px solid rgba(0,212,255,0.3);
         }
 
         .hero-name {
-            font-size: 72px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size:72px; font-weight:700; margin-bottom:15px;
+            background:linear-gradient(135deg,#ffffff,#00d4ff);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
         }
+        .hero-title   { font-size:32px; color:#00d4ff; margin-bottom:20px; font-weight:300; }
+        .hero-summary { font-size:20px; color:rgba(255,255,255,0.8); max-width:900px; margin:0 auto 30px; line-height:1.6; }
 
-        .hero-title {
-            font-size: 32px;
-            color: #00d4ff;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .hero-summary {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 900px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
+        .contact-info { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin-bottom:40px; }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            display:flex; align-items:center; gap:10px;
+            padding:12px 25px;
+            background:rgba(0,212,255,0.1); border:2px solid rgba(0,212,255,0.3); border-radius:25px;
+            transition:all 0.3s ease;
         }
+        .contact-item:hover { background:rgba(0,212,255,0.2); transform:translateY(-3px); box-shadow:0 5px 20px rgba(0,212,255,0.3); }
+        .contact-item a { color:#fff; text-decoration:none; }
 
-        .contact-item:hover {
-            background: rgba(0, 212, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-        }
+        .cta-buttons { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+        .cta-button { padding:18px 40px; font-size:18px; font-weight:600; border-radius:50px; border:none; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-block; }
+        .cta-primary  { background:linear-gradient(135deg,#00d4ff,#0077be); color:white; box-shadow:0 10px 30px rgba(0,212,255,0.4); }
+        .cta-primary:hover  { transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,212,255,0.6); }
+        .cta-secondary { background:transparent; color:#00d4ff; border:2px solid #00d4ff; }
+        .cta-secondary:hover { background:rgba(0,212,255,0.1); transform:translateY(-5px); }
 
-        .contact-item a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-primary {
-            background: linear-gradient(135deg, #00d4ff, #0077be);
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #00d4ff;
-            border: 2px solid #00d4ff;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        /* =============================================
-           MUSIC BUTTON — PLAYING STATE STYLES
-           ============================================= */
-        #musicBtn {
-            position: relative;
-            overflow: hidden;
-        }
-
+        #musicBtn { position:relative; overflow:hidden; }
         #musicBtn.playing {
-            background: rgba(0, 212, 255, 0.15);
-            border-color: #00ff88;
-            color: #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.2);
-            animation: musicPulse 1.5s ease-in-out infinite;
+            background:rgba(0,212,255,0.15); border-color:#00ff88; color:#00ff88;
+            box-shadow:0 0 20px rgba(0,255,136,0.4),0 0 40px rgba(0,255,136,0.2);
+            animation:musicPulse 1.5s ease-in-out infinite;
         }
-
         @keyframes musicPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.7), 0 0 60px rgba(0, 255, 136, 0.4); }
+            0%,100%{box-shadow:0 0 20px rgba(0,255,136,0.4),0 0 40px rgba(0,255,136,0.2)}
+            50%{box-shadow:0 0 30px rgba(0,255,136,0.7),0 0 60px rgba(0,255,136,0.4)}
         }
+        .eq-bars { display:none; align-items:flex-end; gap:3px; height:20px; margin-left:8px; }
+        #musicBtn.playing .eq-bars { display:inline-flex; }
+        .eq-bar { width:4px; background:#00ff88; border-radius:2px; animation:eqAnim 0.6s ease-in-out infinite alternate; }
+        .eq-bar:nth-child(1){animation-duration:0.5s;animation-delay:0.00s}
+        .eq-bar:nth-child(2){animation-duration:0.4s;animation-delay:0.10s}
+        .eq-bar:nth-child(3){animation-duration:0.6s;animation-delay:0.20s}
+        .eq-bar:nth-child(4){animation-duration:0.3s;animation-delay:0.05s}
+        @keyframes eqAnim { from{height:4px} to{height:18px} }
 
-        /* Equalizer bars shown when playing */
-        .eq-bars {
-            display: none;
-            align-items: flex-end;
-            gap: 3px;
-            height: 20px;
-            margin-left: 8px;
-        }
-
-        #musicBtn.playing .eq-bars {
-            display: inline-flex;
-        }
-
-        .eq-bar {
-            width: 4px;
-            background: #00ff88;
-            border-radius: 2px;
-            animation: eqAnim 0.6s ease-in-out infinite alternate;
-        }
-
-        .eq-bar:nth-child(1) { animation-duration: 0.5s; animation-delay: 0.0s; }
-        .eq-bar:nth-child(2) { animation-duration: 0.4s; animation-delay: 0.1s; }
-        .eq-bar:nth-child(3) { animation-duration: 0.6s; animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { animation-duration: 0.3s; animation-delay: 0.05s; }
-
-        @keyframes eqAnim {
-            from { height: 4px; }
-            to   { height: 18px; }
-        }
-
-        /* ============================================= */
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
+        .scroll-indicator { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); animation:bounce 2s infinite; }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-20px) translateX(-50%); }
-            60% { transform: translateY(-10px) translateX(-50%); }
+            0%,20%,50%,80%,100%{transform:translateY(0) translateX(-50%)}
+            40%{transform:translateY(-20px) translateX(-50%)}
+            60%{transform:translateY(-10px) translateX(-50%)}
         }
-
-        .scroll-indicator span {
-            font-size: 40px;
-            color: #00d4ff;
-        }
+        .scroll-indicator span { font-size:40px; color:#00d4ff; }
 
         .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto 60px auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            padding: 0 40px;
+            max-width:1200px; margin:0 auto 60px auto;
+            display:grid; grid-template-columns:repeat(4,1fr); gap:25px; padding:0 40px;
         }
-
-        @media (max-width: 900px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 500px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        @media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:500px){.stats-grid{grid-template-columns:1fr}}
         .stat-box {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 119, 190, 0.05));
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            text-align:center; padding:30px;
+            background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(0,119,190,0.05));
+            border:2px solid rgba(0,212,255,0.3); border-radius:15px; transition:all 0.3s ease;
         }
-
-        .stat-box:hover {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 119, 190, 0.1));
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 700;
-            color: #00d4ff;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-        }
+        .stat-box:hover { background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(0,119,190,0.1)); transform:scale(1.05); box-shadow:0 10px 30px rgba(0,212,255,0.3); }
+        .stat-number { font-size:56px; font-weight:700; color:#00d4ff; margin-bottom:10px; }
+        .stat-label  { font-size:18px; color:rgba(255,255,255,0.8); }
 
         .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 50px;
-            text-align: center;
-            color: #00d4ff;
-            position: relative;
+            font-size:48px; font-weight:700; margin-bottom:50px;
+            text-align:center; color:#00d4ff; position:relative;
         }
-
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            content:''; position:absolute; bottom:-15px; left:50%; transform:translateX(-50%);
+            width:100px; height:4px; background:linear-gradient(90deg,transparent,#00d4ff,transparent);
         }
 
-        .yaml-launch {
-            text-decoration: none;
-            color: white;
-            font-family: Verdana, sans-serif;
-            display: inline-block;
-            padding: 8px 4px;
-            border-radius: 8px;
-            transition: box-shadow 0.25s ease, transform 0.15s ease;
+        /* ── SKILLS NETWORK NODE ROW ── */
+        .yaml-skills-container { max-width:1500px; margin:0 auto 80px; padding:60px 40px; position:relative; }
+
+        .server-network {
+            display:flex; justify-content:space-around; align-items:center;
+            position:relative; flex-wrap:nowrap; gap:0; padding:0 20px;
         }
 
-        .yaml-launch:hover {
-            transform: translateY(-2px);
+        .cable-connection { position:absolute; top:50%; transform:translateY(-50%); z-index:1; height:30px; display:flex; align-items:center; }
+        .cable-body {
+            height:8px;
+            background:linear-gradient(180deg,#2a4a6a 0%,#1a3a5a 20%,#0f2a4a 50%,#1a3a5a 80%,#2a4a6a 100%);
+            position:relative; border-radius:4px;
+            box-shadow:0 2px 4px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .cable-body::before {
+            content:''; position:absolute; top:0;left:0;right:0;bottom:0;
+            background:repeating-linear-gradient(90deg,transparent 0px,transparent 8px,rgba(0,0,0,0.2) 8px,rgba(0,0,0,0.2) 9px);
+        }
+        .rj45-connector {
+            width:16px; height:20px;
+            background:linear-gradient(180deg,#444 0%,#222 50%,#111 100%);
+            border:1px solid #00d4ff; border-radius:2px; position:relative;
+            box-shadow:0 0 5px rgba(0,212,255,0.5),inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .rj45-connector::before {
+            content:''; position:absolute; top:2px;left:2px;right:2px; height:8px;
+            background:repeating-linear-gradient(90deg,#00d4ff 0px,#00d4ff 1px,transparent 1px,transparent 2px);
+            opacity:0.6;
+        }
+        .rj45-connector::after {
+            content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%);
+            width:8px; height:4px; background:#00d4ff; border-radius:1px; box-shadow:0 0 3px rgba(0,212,255,0.8);
+        }
+        .cable-spark {
+            position:absolute; width:6px; height:6px; background:#00ff88; border-radius:50%;
+            box-shadow:0 0 10px #00ff88,0 0 20px #00d4ff,0 0 30px rgba(0,255,136,0.5);
+            animation:spark-flow 3s linear infinite; top:50%; transform:translateY(-50%);
+        }
+        @keyframes spark-flow { 0%{left:0%;opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{left:100%;opacity:0} }
+
+        .server-box { position:relative; z-index:10; text-align:center; flex:0 0 auto; }
+
+        .yaml-link { display:block; text-decoration:none; color:white; transition:all 0.3s ease; }
+
+        .yaml-label {
+            background:linear-gradient(135deg,rgba(0,212,255,0.8),rgba(0,119,190,0.8));
+            padding:12px 24px; border-radius:50px; font-size:14px; font-weight:600;
+            margin-bottom:15px; border:2px solid rgba(0,212,255,0.5);
+            box-shadow:0 5px 15px rgba(0,212,255,0.3); transition:all 0.3s ease; white-space:nowrap;
+        }
+        .yaml-link:hover .yaml-label {
+            background:linear-gradient(135deg,rgba(0,212,255,1),rgba(0,255,136,0.8));
+            transform:translateY(-3px); box-shadow:0 8px 25px rgba(0,255,136,0.5);
+        }
+        .yaml-link.yaml-sql:hover .yaml-label {
+            background:linear-gradient(135deg,rgba(255,80,0,0.9),rgba(0,212,255,0.8));
+            box-shadow:0 8px 25px rgba(255,69,0,0.6),0 0 15px rgba(0,212,255,0.4);
+        }
+        /* API node label hover */
+        .yaml-link.yaml-api:hover .yaml-label {
+            background:linear-gradient(135deg,rgba(0,255,136,0.9),rgba(139,92,246,0.8));
+            box-shadow:0 8px 25px rgba(0,255,136,0.5),0 0 15px rgba(139,92,246,0.4);
         }
 
-        .yaml-launch:active {
-            transform: scale(0.96);
-            box-shadow: 0 0 18px rgba(255, 255, 255, 0.7);
+        .server-icon-box {
+            background:linear-gradient(135deg,rgba(26,26,46,0.9),rgba(15,52,96,0.8));
+            border:2px solid rgba(0,212,255,0.4); border-radius:15px;
+            padding:25px; width:120px; height:120px;
+            display:flex; align-items:center; justify-content:center;
+            margin:0 auto; position:relative; overflow:hidden; transition:all 0.3s ease;
         }
-
-        .yaml-linux:hover { box-shadow: 0 0 16px rgba(255, 215, 0, 0.9); }
-        .yaml-html:hover { box-shadow: 0 0 16px rgba(255, 140, 0, 0.9); }
-        .yaml-ansible:hover { box-shadow: 0 0 16px rgba(220, 20, 60, 0.9); }
-        .yaml-remedy:hover { box-shadow: 0 0 16px rgba(30, 144, 255, 0.9); }
-        .yaml-hadoop:hover { box-shadow: 0 0 16px rgba(255, 215, 0, 0.9); }
-        .yaml-splunk:hover { box-shadow: 0 0 16px rgba(50, 205, 50, 0.9); }
-        .yaml-sql:hover { box-shadow: 0 0 16px rgba(255, 69, 0, 0.9), 0 0 22px rgba(0, 212, 255, 0.6); }
-        .yaml-tableau:hover { 
-            box-shadow: 
-                0 0 16px rgba(0, 191, 255, 0.9),
-                0 0 22px rgba(255, 69, 0, 0.7);
+        .server-icon-box::before {
+            content:''; position:absolute; top:-50%;left:-50%; width:200%;height:200%;
+            background:linear-gradient(45deg,transparent,rgba(0,212,255,0.1),transparent);
+            animation:scan 3s linear infinite;
         }
-
-        .skills-section {
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes scan {
+            0%  {transform:translateX(-100%) translateY(-100%) rotate(45deg)}
+            100%{transform:translateX(100%)  translateY(100%)  rotate(45deg)}
         }
+        .yaml-link:hover .server-icon-box { border-color:rgba(0,255,136,0.8); box-shadow:0 0 30px rgba(0,212,255,0.6); transform:scale(1.05); }
+        .yaml-link.yaml-sql:hover .server-icon-box { border-color:rgba(255,80,0,0.8); box-shadow:0 0 30px rgba(255,69,0,0.5),0 0 15px rgba(0,212,255,0.4); }
+        .yaml-link.yaml-api:hover .server-icon-box { border-color:rgba(0,255,136,0.8); box-shadow:0 0 30px rgba(0,255,136,0.5),0 0 15px rgba(139,92,246,0.4); }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            max-width: 100%;
-        }
+        .server-icon-box img { width:60px;height:60px; position:relative;z-index:2; filter:drop-shadow(0 0 5px rgba(0,212,255,0.5)); }
 
+        /* outer glow on hover for yaml-api */
+        .yaml-api:hover { box-shadow:0 0 16px rgba(0,255,136,0.9),0 0 22px rgba(139,92,246,0.7); }
+
+        @media(max-width:1300px){ .server-network{flex-wrap:wrap;gap:40px} .cable-connection{display:none} }
+
+        /* ── SKILLS GRID ── */
+        .skills-section { padding:80px 40px; max-width:1200px; margin:0 auto; }
+        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-top:40px; }
         .skill-category {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 0, 0, 0.3));
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            transition: all 0.4s ease;
+            background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(0,0,0,0.3));
+            border:2px solid rgba(0,212,255,0.3); border-radius:20px; padding:35px; transition:all 0.4s ease;
         }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-            border-color: rgba(0, 212, 255, 0.6);
-        }
-
-        .skill-category h3 {
-            font-size: 24px;
-            color: #00d4ff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category .icon {
-            font-size: 32px;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        .skill-category:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,212,255,0.3); border-color:rgba(0,212,255,0.6); }
+        .skill-category h3 { font-size:24px; color:#00d4ff; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+        .skill-category .icon { font-size:32px; }
+        .skill-list { display:flex; flex-direction:column; gap:10px; }
         .skill-tag {
-            padding: 8px 16px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            text-align: center;
+            padding:8px 16px; background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3);
+            border-radius:20px; font-size:14px; color:rgba(255,255,255,0.9); transition:all 0.3s ease; text-align:center;
         }
+        .skill-tag:hover { background:rgba(0,212,255,0.2); transform:scale(1.05); }
 
-        .skill-tag:hover {
-            background: rgba(0, 212, 255, 0.2);
-            transform: scale(1.05);
-        }
+        /* ── EXPERIENCE ── */
+        .experience-section { padding:80px 40px; background:rgba(0,0,0,0.3); }
+        .experience-container { max-width:1200px; margin:0 auto; }
+        .experience-timeline { position:relative; padding-left:50px; }
+        .experience-timeline::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; background:linear-gradient(180deg,#00d4ff,transparent); }
+        .experience-item { margin-bottom:50px; position:relative; animation:fadeIn 0.8s ease-out both; }
+        .experience-item:nth-child(1){animation-delay:0.1s}
+        .experience-item:nth-child(2){animation-delay:0.2s}
+        .experience-item:nth-child(3){animation-delay:0.3s}
+        .experience-item:nth-child(4){animation-delay:0.4s}
+        @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .experience-item::before { content:''; position:absolute; left:-56px;top:0; width:15px;height:15px; border-radius:50%; background:#00d4ff; box-shadow:0 0 20px rgba(0,212,255,0.6); }
+        .experience-card { background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(0,0,0,0.3)); border:2px solid rgba(0,212,255,0.3); border-radius:15px; padding:30px; transition:all 0.3s ease; }
+        .experience-card:hover { border-color:rgba(0,212,255,0.6); box-shadow:0 10px 30px rgba(0,212,255,0.2); }
+        .experience-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; flex-wrap:wrap; gap:15px; }
+        .experience-title   { font-size:26px; color:#00d4ff; margin-bottom:8px; }
+        .experience-company { font-size:20px; color:rgba(255,255,255,0.9); margin-bottom:5px; }
+        .experience-duration{ font-size:16px; color:rgba(255,255,255,0.6); font-style:italic; }
+        .experience-highlights { display:grid; gap:15px; margin-top:20px; }
+        .highlight-item { display:flex; gap:15px; padding:15px; background:rgba(0,212,255,0.05); border-left:3px solid #00d4ff; border-radius:5px; transition:all 0.3s ease; }
+        .highlight-item:hover { background:rgba(0,212,255,0.1); transform:translateX(10px); }
+        .highlight-icon { font-size:24px; flex-shrink:0; }
+        .highlight-text { color:rgba(255,255,255,0.85); line-height:1.6; }
 
-        .experience-section {
-            padding: 80px 40px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .experience-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .experience-timeline {
-            position: relative;
-            padding-left: 50px;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #00d4ff, transparent);
-        }
-
-        .experience-item {
-            margin-bottom: 50px;
-            position: relative;
-            animation: fadeIn 0.8s ease-out both;
-        }
-
-        .experience-item:nth-child(1) { animation-delay: 0.1s; }
-        .experience-item:nth-child(2) { animation-delay: 0.2s; }
-        .experience-item:nth-child(3) { animation-delay: 0.3s; }
-        .experience-item:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -56px;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #00d4ff;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
-        }
-
-        .experience-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 0, 0, 0.3));
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .experience-card:hover {
-            border-color: rgba(0, 212, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .experience-title {
-            font-size: 26px;
-            color: #00d4ff;
-            margin-bottom: 8px;
-        }
-
-        .experience-company {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 5px;
-        }
-
-        .experience-duration {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-        }
-
-        .experience-highlights {
-            display: grid;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .highlight-item {
-            display: flex;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(0, 212, 255, 0.05);
-            border-left: 3px solid #00d4ff;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .highlight-item:hover {
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateX(10px);
-        }
-
-        .highlight-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .highlight-text {
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            .hero-name { font-size: 48px; }
-            .hero-title { font-size: 24px; }
-            .hero-summary { font-size: 16px; }
-            .section-title { font-size: 36px; }
-            .experience-timeline { padding-left: 30px; }
-            .experience-item::before { left: -36px; }
+        @media(max-width:768px){
+            .hero-name{font-size:48px} .hero-title{font-size:24px} .hero-summary{font-size:16px}
+            .section-title{font-size:36px} .experience-timeline{padding-left:30px} .experience-item::before{left:-36px}
         }
     </style>
 </head>
@@ -604,18 +309,9 @@
             </div>
 
             <div class="contact-info">
-                <div class="contact-item">
-                    <span>📱</span>
-                    <a href="tel:469-219-1153">469-219-1153</a>
-                </div>
-                <div class="contact-item">
-    <span>✉️</span>
-    <a id="emailLink" href="#">karltdunn@gmail.com</a>
-</div>
-                <div class="contact-item">
-                    <span>💼</span>
-                    <a href="https://linkedin.com/in/karltdunn" target="_blank">LinkedIn</a>
-                </div>
+                <div class="contact-item"><span>📱</span><a href="tel:469-219-1153">469-219-1153</a></div>
+                <div class="contact-item"><span>✉️</span><a id="emailLink" href="#">karltdunn@gmail.com</a></div>
+                <div class="contact-item"><span>💼</span><a href="https://linkedin.com/in/karltdunn" target="_blank">LinkedIn</a></div>
             </div>
 
             <div class="cta-buttons">
@@ -623,245 +319,27 @@
                 <button class="cta-button cta-secondary" id="musicBtn" onclick="toggleMusic()">
                     🎵 Play Music
                     <span class="eq-bars">
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span><span class="eq-bar"></span>
+                        <span class="eq-bar"></span><span class="eq-bar"></span>
                     </span>
                 </button>
             </div>
         </div>
 
-        <div class="scroll-indicator">
-            <span>↓</span>
-        </div>
+        <div class="scroll-indicator"><span>↓</span></div>
     </div>
 
+    <!-- STATS -->
     <h2 class="section-title">Performance Metrics 📈</h2>
-
     <div class="stats-grid">
-        <div class="stat-box">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">85%</div>
-            <div class="stat-label">MTTR Reduction</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">70%</div>
-            <div class="stat-label">Deployment Time Saved</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-number">99%</div>
-            <div class="stat-label">System Availability</div>
-        </div>
+        <div class="stat-box"><div class="stat-number">15+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-box"><div class="stat-number">85%</div><div class="stat-label">MTTR Reduction</div></div>
+        <div class="stat-box"><div class="stat-number">70%</div><div class="stat-label">Deployment Time Saved</div></div>
+        <div class="stat-box"><div class="stat-number">99%</div><div class="stat-label">System Availability</div></div>
     </div>
 
+    <!-- SKILLS NETWORK -->
     <h2 class="section-title" id="skills-section">Technical Skills 🎯</h2>
-
-    <style>
-        .yaml-skills-container {
-            max-width: 1500px;
-            margin: 0 auto 80px;
-            padding: 60px 40px;
-            position: relative;
-        }
-
-        .server-network {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            position: relative;
-            flex-wrap: nowrap;
-            gap: 0;
-            padding: 0 20px;
-        }
-
-        .cable-connection {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-            height: 30px;
-            display: flex;
-            align-items: center;
-        }
-
-        .cable-body {
-            height: 8px;
-            background: linear-gradient(180deg, 
-                #2a4a6a 0%,
-                #1a3a5a 20%,
-                #0f2a4a 50%,
-                #1a3a5a 80%,
-                #2a4a6a 100%
-            );
-            position: relative;
-            border-radius: 4px;
-            box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .cable-body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent 0px,
-                transparent 8px,
-                rgba(0, 0, 0, 0.2) 8px,
-                rgba(0, 0, 0, 0.2) 9px
-            );
-        }
-
-        .rj45-connector {
-            width: 16px;
-            height: 20px;
-            background: linear-gradient(180deg, #444 0%, #222 50%, #111 100%);
-            border: 1px solid #00d4ff;
-            border-radius: 2px;
-            position: relative;
-            box-shadow: 0 0 5px rgba(0, 212, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .rj45-connector::before {
-            content: '';
-            position: absolute;
-            top: 2px; left: 2px; right: 2px;
-            height: 8px;
-            background: repeating-linear-gradient(90deg, #00d4ff 0px, #00d4ff 1px, transparent 1px, transparent 2px);
-            opacity: 0.6;
-        }
-
-        .rj45-connector::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px; height: 4px;
-            background: #00d4ff;
-            border-radius: 1px;
-            box-shadow: 0 0 3px rgba(0, 212, 255, 0.8);
-        }
-
-        .cable-spark {
-            position: absolute;
-            width: 6px; height: 6px;
-            background: #00ff88;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00ff88, 0 0 20px #00d4ff, 0 0 30px rgba(0, 255, 136, 0.5);
-            animation: spark-flow 3s linear infinite;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        @keyframes spark-flow {
-            0% { left: 0%; opacity: 0; }
-            5% { opacity: 1; }
-            95% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
-        }
-
-        .server-box {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            flex: 0 0 auto;
-        }
-
-        .yaml-link {
-            display: block;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .yaml-label {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.8), rgba(0, 119, 190, 0.8));
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 2px solid rgba(0, 212, 255, 0.5);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .yaml-link:hover .yaml-label {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 1), rgba(0, 255, 136, 0.8));
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
-        }
-
-        .yaml-link.yaml-sql:hover .yaml-label {
-            background: linear-gradient(135deg, rgba(255, 80, 0, 0.9), rgba(0, 212, 255, 0.8));
-            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6), 0 0 15px rgba(0, 212, 255, 0.4);
-        }
-
-        .server-icon-box {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(15, 52, 96, 0.8));
-            border: 2px solid rgba(0, 212, 255, 0.4);
-            border-radius: 15px;
-            padding: 25px;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .server-icon-box::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            animation: scan 3s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .yaml-link:hover .server-icon-box {
-            border-color: rgba(0, 255, 136, 0.8);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-            transform: scale(1.05);
-        }
-
-        .yaml-link.yaml-sql:hover .server-icon-box {
-            border-color: rgba(255, 80, 0, 0.8);
-            box-shadow: 0 0 30px rgba(255, 69, 0, 0.5), 0 0 15px rgba(0, 212, 255, 0.4);
-        }
-
-        .server-icon-box img {
-            width: 60px; height: 60px;
-            position: relative;
-            z-index: 2;
-            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
-        }
-
-        @media (max-width: 1300px) {
-            .server-network {
-                flex-wrap: wrap;
-                gap: 40px;
-            }
-            .cable-connection {
-                display: none;
-            }
-        }
-    </style>
 
     <div class="yaml-skills-container">
         <div class="server-network" id="serverNetwork">
@@ -936,14 +414,51 @@
                 </a>
             </div>
 
+            <!-- ═══════════════════════════════════════
+                 NEW — REST API node
+                 Links to rest_api_crud_interview.html
+                 ═══════════════════════════════════════ -->
+            <div class="server-box">
+                <a href="rest_api_crud_interview.html" class="yaml-link yaml-api">
+                    <div class="yaml-label">REST API</div>
+                    <div class="server-icon-box">
+                        <svg width="62" height="62" viewBox="0 0 62 62" fill="none"
+                             xmlns="http://www.w3.org/2000/svg"
+                             style="position:relative;z-index:2;filter:drop-shadow(0 0 7px rgba(0,255,136,0.65))">
+                            <!-- left bracket -->
+                            <path d="M16 10 L9 10 L9 52 L16 52"
+                                  stroke="#00ff88" stroke-width="3.5"
+                                  stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <!-- right bracket -->
+                            <path d="M46 10 L53 10 L53 52 L46 52"
+                                  stroke="#00ff88" stroke-width="3.5"
+                                  stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <!-- GET -->
+                            <text x="31" y="26" text-anchor="middle"
+                                  font-family="'Courier New',monospace" font-size="9"
+                                  font-weight="700" fill="#00d4ff">GET</text>
+                            <!-- POST -->
+                            <text x="31" y="37" text-anchor="middle"
+                                  font-family="'Courier New',monospace" font-size="9"
+                                  font-weight="700" fill="#00ff88">POST</text>
+                            <!-- CRUD -->
+                            <text x="31" y="48" text-anchor="middle"
+                                  font-family="'Courier New',monospace" font-size="8"
+                                  font-weight="700" fill="#8b5cf6">CRUD</text>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </div>
 
+    <!-- SKILLS GRID -->
     <div class="skills-section">
         <div class="skills-grid">
 
             <div class="skill-category">
-                <h3><span class="icon">🧠</span> Linux/Unix & Cloud</h3>
+                <h3><span class="icon">🧠</span> Linux/Unix &amp; Cloud</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Linux/Unix Admin</span>
                     <span class="skill-tag">Shell Scripting</span>
@@ -954,7 +469,7 @@
             </div>
 
             <div class="skill-category">
-                <h3><span class="icon">🔄</span> DevOps & Automation</h3>
+                <h3><span class="icon">🔄</span> DevOps &amp; Automation</h3>
                 <div class="skill-list">
                     <span class="skill-tag">GitLab</span>
                     <span class="skill-tag">Jenkins</span>
@@ -975,7 +490,7 @@
             </div>
 
             <div class="skill-category">
-                <h3><span class="icon">📊</span> Monitoring & Analytics</h3>
+                <h3><span class="icon">📊</span> Monitoring &amp; Analytics</h3>
                 <div class="skill-list">
                     <span class="skill-tag">New Relic</span>
                     <span class="skill-tag">Kibana</span>
@@ -985,7 +500,7 @@
             </div>
 
             <div class="skill-category">
-                <h3><span class="icon">⚙️</span> App Tier & Diagnostics</h3>
+                <h3><span class="icon">⚙️</span> App Tier &amp; Diagnostics</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Apache WebLogic</span>
                     <span class="skill-tag">JVM Diagnostics</span>
@@ -995,24 +510,38 @@
             </div>
 
             <div class="skill-category">
-                <h3><span class="icon">📋</span> ITSM & Operations</h3>
+                <h3><span class="icon">📋</span> ITSM &amp; Operations</h3>
                 <div class="skill-list">
                     <span class="skill-tag">BMC Remedy (ITIL)</span>
                     <span class="skill-tag">Jira Service Management</span>
                     <span class="skill-tag">Runbook Automation</span>
-                    <span class="skill-tag">Incident & Change Management</span>
+                    <span class="skill-tag">Incident &amp; Change Management</span>
                     <span class="skill-tag">SLA Compliance / ITIL Framework</span>
+                </div>
+            </div>
+
+            <!-- NEW skill card -->
+            <div class="skill-category">
+                <h3><span class="icon">🔌</span> API &amp; Integration</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">REST API Design &amp; Validation</span>
+                    <span class="skill-tag">SOAP / XML / WSDL</span>
+                    <span class="skill-tag">JSON Schema Validation</span>
+                    <span class="skill-tag">HTTP Methods &amp; Status Codes</span>
+                    <span class="skill-tag">End-to-End Data Mapping</span>
+                    <span class="skill-tag">OAuth2 / JWT / API Security</span>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- EXPERIENCE -->
     <div class="experience-section" id="experience">
         <div class="experience-container">
             <h2 class="section-title">Professional Experience</h2>
-            
             <div class="experience-timeline">
+
                 <div class="experience-item">
                     <div class="experience-card">
                         <div class="experience-header">
@@ -1023,18 +552,9 @@
                             <p class="experience-duration">May 2020 – Aug 2025</p>
                         </div>
                         <div class="experience-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🚨</span>
-                                <p class="highlight-text">Overhauled Sev-1 incident protocols, reducing MTTR by 85% across 72+ critical applications</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">☁️</span>
-                                <p class="highlight-text">Architected IaaS and PaaS based cloud Hadoop operations, achieving 10% reduction in downtime and 50% decrease in defects</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔄</span>
-                                <p class="highlight-text">Streamlined deployment workflows using GitLab, Jenkins, and Ansible, ensuring 99% system availability</p>
-                            </div>
+                            <div class="highlight-item"><span class="highlight-icon">🚨</span><p class="highlight-text">Overhauled Sev-1 incident protocols, reducing MTTR by 85% across 72+ critical applications</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">☁️</span><p class="highlight-text">Architected IaaS and PaaS based cloud Hadoop operations, achieving 10% reduction in downtime and 50% decrease in defects</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">🔄</span><p class="highlight-text">Streamlined deployment workflows using GitLab, Jenkins, and Ansible, ensuring 99% system availability</p></div>
                         </div>
                     </div>
                 </div>
@@ -1049,18 +569,9 @@
                             <p class="experience-duration">Jan 2013 – Dec 2019</p>
                         </div>
                         <div class="experience-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔧</span>
-                                <p class="highlight-text">Led migration of AT&T Linux system platforms, cutting resolution times by 80%</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">📊</span>
-                                <p class="highlight-text">Developed automated ETL scripts and PL/SQL queries, increasing operational visibility by 30%</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✅</span>
-                                <p class="highlight-text">Maintained 98% SLA adherence rate managing BSS billing and CRM systems on Apache WebLogic</p>
-                            </div>
+                            <div class="highlight-item"><span class="highlight-icon">🔧</span><p class="highlight-text">Led migration of AT&amp;T Linux system platforms, cutting resolution times by 80%</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">📊</span><p class="highlight-text">Developed automated ETL scripts and PL/SQL queries, increasing operational visibility by 30%</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">✅</span><p class="highlight-text">Maintained 98% SLA adherence rate managing BSS billing and CRM systems on Apache WebLogic</p></div>
                         </div>
                     </div>
                 </div>
@@ -1075,18 +586,9 @@
                             <p class="experience-duration">Jun 2009 – Jan 2013</p>
                         </div>
                         <div class="experience-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💾</span>
-                                <p class="highlight-text">Implemented metadata archiving for 1M+ files daily, enhancing data retrieval efficiency</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">⚡</span>
-                                <p class="highlight-text">Developed HDFS storage solutions reducing query latency by 25%</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔒</span>
-                                <p class="highlight-text">Deployed GSM/UMTS/LTE OSS solutions using VMware with secure FTP, SSH, and SMTP protocols</p>
-                            </div>
+                            <div class="highlight-item"><span class="highlight-icon">💾</span><p class="highlight-text">Implemented metadata archiving for 1M+ files daily, enhancing data retrieval efficiency</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">⚡</span><p class="highlight-text">Developed HDFS storage solutions reducing query latency by 25%</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">🔒</span><p class="highlight-text">Deployed GSM/UMTS/LTE OSS solutions using VMware with secure FTP, SSH, and SMTP protocols</p></div>
                         </div>
                     </div>
                 </div>
@@ -1096,369 +598,137 @@
                         <div class="experience-header">
                             <div>
                                 <h3 class="experience-title">Implementation Solutions Engineer</h3>
-                                <p class="experience-company">AT&T | Richardson, TX</p>
+                                <p class="experience-company">AT&amp;T | Richardson, TX</p>
                             </div>
                             <p class="experience-duration">Apr 1999 – Apr 2009</p>
                         </div>
                         <div class="experience-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💳</span>
-                                <p class="highlight-text">Designed custom billing tools for AT&T and Cingular Wireless using Oracle and Shell scripting, supporting 24/7 billing cycles</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">📊</span>
-                                <p class="highlight-text">Performed complex ETL processing for 3GPP data (HSS/HLR/MME) repositories for strategic planning</p>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔒</span>
-                                <p class="highlight-text">Enforced strict SOX compliance and enterprise security protocols across provisioning and GRC activities</p>
-                            </div>
+                            <div class="highlight-item"><span class="highlight-icon">💳</span><p class="highlight-text">Designed custom billing tools for AT&amp;T and Cingular Wireless using Oracle and Shell scripting, supporting 24/7 billing cycles</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">📊</span><p class="highlight-text">Performed complex ETL processing for 3GPP data (HSS/HLR/MME) repositories for strategic planning</p></div>
+                            <div class="highlight-item"><span class="highlight-icon">🔒</span><p class="highlight-text">Enforced strict SOX compliance and enterprise security protocols across provisioning and GRC activities</p></div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <a href="landing_page.html" class="back-button" style="position: fixed; top: 30px; left: 30px; padding: 15px 30px; background: rgba(0, 242, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(0, 242, 255, 0.5); border-radius: 50px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; z-index: 1000;">← Back to Portfolio</a>
+    <a href="landing_page.html" style="position:fixed;top:30px;left:30px;padding:15px 30px;background:rgba(0,242,255,0.2);backdrop-filter:blur(10px);border:2px solid rgba(0,242,255,0.5);border-radius:50px;color:white;text-decoration:none;font-weight:600;transition:all 0.3s ease;z-index:1000;">← Back to Portfolio</a>
 
-    <div style="text-align:center; margin-top:60px; padding-bottom: 60px;">
+    <div style="text-align:center;margin-top:60px;padding-bottom:60px;">
         <a href="Resume_Page.html" class="cta-button cta-primary" style="margin-right:20px;">📄 View Resume</a>
         <button class="cta-button cta-secondary" onclick="toggleMusic()" id="musicBtn2">🎵 Play Music</button>
     </div>
 
-    <!-- ============================================================
-         SYNTHWAVE MUSIC ENGINE — Web Audio API
-         No external files. Works 100% on GitHub Pages.
-         Procedurally generates a cyberpunk/synthwave loop.
-         ============================================================ -->
+    <!-- SYNTHWAVE ENGINE -->
     <script>
-    (function() {
-        let audioCtx = null;
-        let masterGain = null;
-        let isPlaying = false;
-        let scheduledNodes = [];
-        let loopTimeout = null;
+    (function(){
+        let audioCtx=null,masterGain=null,isPlaying=false,scheduledNodes=[],loopTimeout=null;
+        const BPM=120,BEAT=60/BPM,BAR=BEAT*4;
+        const N={A2:110,E3:164.81,G3:196,A3:220,C4:261.63,D4:293.66,E4:329.63,G4:392,A4:440,C5:523.25,D5:587.33,E5:659.25};
+        const BASS=[[N.A2,0,1.8],[N.A2,2,.8],[N.E3,2.5,.8],[N.G3,3,.8],[N.A2,4,1.8],[N.A2,6,.8],[N.D4,6.5,.8],[N.E3,7,.9]];
+        const MEL=[[N.A4,0,.3],[N.C5,.5,.3],[N.E5,1,.3],[N.A4,1.5,.3],[N.G4,2,.3],[N.E4,2.5,.3],[N.D4,3,.3],[N.E4,3.5,.3],[N.A4,4,.3],[N.C5,4.5,.3],[N.D5,5,.4],[N.C5,5.5,.3],[N.A4,6,.3],[N.G4,6.5,.3],[N.E4,7,.3],[N.A4,7.5,.5]];
 
-        // BPM and timing
-        const BPM = 120;
-        const BEAT = 60 / BPM;       // seconds per beat
-        const BAR  = BEAT * 4;       // seconds per bar
-
-        // Synthwave note frequencies (pentatonic minor, key of A)
-        const NOTES = {
-            A2: 110.00, E3: 164.81, G3: 196.00, A3: 220.00,
-            C4: 261.63, D4: 293.66, E4: 329.63, G4: 392.00,
-            A4: 440.00, C5: 523.25, D5: 587.33, E5: 659.25
-        };
-
-        // Bass line pattern (note, beat offset, duration in beats)
-        const BASS_PATTERN = [
-            [NOTES.A2, 0,   1.8],
-            [NOTES.A2, 2,   0.8],
-            [NOTES.E3, 2.5, 0.8],
-            [NOTES.G3, 3,   0.8],
-            [NOTES.A2, 4,   1.8],
-            [NOTES.A2, 6,   0.8],
-            [NOTES.D4, 6.5, 0.8],
-            [NOTES.E3, 7,   0.9],
-        ];
-
-        // Melody arpeggio pattern
-        const MELODY_PATTERN = [
-            [NOTES.A4, 0,    0.3],
-            [NOTES.C5, 0.5,  0.3],
-            [NOTES.E5, 1,    0.3],
-            [NOTES.A4, 1.5,  0.3],
-            [NOTES.G4, 2,    0.3],
-            [NOTES.E4, 2.5,  0.3],
-            [NOTES.D4, 3,    0.3],
-            [NOTES.E4, 3.5,  0.3],
-            [NOTES.A4, 4,    0.3],
-            [NOTES.C5, 4.5,  0.3],
-            [NOTES.D5, 5,    0.4],
-            [NOTES.C5, 5.5,  0.3],
-            [NOTES.A4, 6,    0.3],
-            [NOTES.G4, 6.5,  0.3],
-            [NOTES.E4, 7,    0.3],
-            [NOTES.A4, 7.5,  0.5],
-        ];
-
-        function initAudio() {
-            if (audioCtx) return;
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-            // Master gain (volume)
-            masterGain = audioCtx.createGain();
-            masterGain.gain.setValueAtTime(0.5, audioCtx.currentTime);
-
-            // Compressor to prevent clipping
-            const compressor = audioCtx.createDynamicsCompressor();
-            compressor.threshold.value = -18;
-            compressor.knee.value = 6;
-            compressor.ratio.value = 4;
-            compressor.attack.value = 0.003;
-            compressor.release.value = 0.25;
-
-            // Reverb (convolver with synthetic impulse)
-            const reverb = audioCtx.createConvolver();
-            reverb.buffer = buildReverb(audioCtx, 1.5, 2, false);
-
-            const reverbGain = audioCtx.createGain();
-            reverbGain.gain.value = 0.25;
-
-            masterGain.connect(compressor);
-            compressor.connect(audioCtx.destination);
-            masterGain.connect(reverb);
-            reverb.connect(reverbGain);
-            reverbGain.connect(audioCtx.destination);
+        function initAudio(){
+            if(audioCtx)return;
+            audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+            masterGain=audioCtx.createGain(); masterGain.gain.setValueAtTime(.5,audioCtx.currentTime);
+            const cmp=audioCtx.createDynamicsCompressor();
+            cmp.threshold.value=-18;cmp.knee.value=6;cmp.ratio.value=4;cmp.attack.value=.003;cmp.release.value=.25;
+            const rev=audioCtx.createConvolver(); rev.buffer=buildRev(1.5,2);
+            const rg=audioCtx.createGain(); rg.gain.value=.25;
+            masterGain.connect(cmp);cmp.connect(audioCtx.destination);
+            masterGain.connect(rev);rev.connect(rg);rg.connect(audioCtx.destination);
         }
-
-        // Build a simple reverb impulse response
-        function buildReverb(ctx, duration, decay, reverse) {
-            const rate     = ctx.sampleRate;
-            const length   = rate * duration;
-            const impulse  = ctx.createBuffer(2, length, rate);
-            for (let i = 0; i < 2; i++) {
-                const channel = impulse.getChannelData(i);
-                for (let j = 0; j < length; j++) {
-                    const n = reverse ? length - j : j;
-                    channel[j] = (Math.random() * 2 - 1) * Math.pow(1 - n / length, decay);
-                }
+        function buildRev(dur,dec){
+            const r=audioCtx.sampleRate,l=r*dur,b=audioCtx.createBuffer(2,l,r);
+            for(let i=0;i<2;i++){const c=b.getChannelData(i);for(let j=0;j<l;j++)c[j]=(Math.random()*2-1)*Math.pow(1-j/l,dec);}
+            return b;
+        }
+        function playNote(freq,t,dur,type,gv,ff){
+            const o=audioCtx.createOscillator(),g=audioCtx.createGain(),f=audioCtx.createBiquadFilter();
+            o.type=type||'sawtooth';o.frequency.setValueAtTime(freq,t);
+            const vib=audioCtx.createOscillator(),vg=audioCtx.createGain();
+            vib.frequency.value=5.5;vg.gain.value=1.2;vib.connect(vg);vg.connect(o.frequency);
+            vib.start(t);vib.stop(t+dur+.1);
+            f.type='lowpass';f.frequency.setValueAtTime(ff||2200,t);f.Q.value=2;
+            g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(gv,t+.04);
+            g.gain.setValueAtTime(gv,t+dur*.6);g.gain.linearRampToValueAtTime(0,t+dur);
+            o.connect(f);f.connect(g);g.connect(masterGain);o.start(t);o.stop(t+dur+.05);
+            scheduledNodes.push(o,vib);
+        }
+        function playKick(t){
+            const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+            o.type='sine';o.frequency.setValueAtTime(160,t);o.frequency.exponentialRampToValueAtTime(40,t+.08);
+            g.gain.setValueAtTime(.8,t);g.gain.exponentialRampToValueAtTime(.001,t+.35);
+            o.connect(g);g.connect(masterGain);o.start(t);o.stop(t+.4);scheduledNodes.push(o);
+        }
+        function playHat(t,acc){
+            const sz=audioCtx.sampleRate*.08,buf=audioCtx.createBuffer(1,sz,audioCtx.sampleRate);
+            const d=buf.getChannelData(0);for(let i=0;i<sz;i++)d[i]=Math.random()*2-1;
+            const s=audioCtx.createBufferSource(),fi=audioCtx.createBiquadFilter(),g=audioCtx.createGain();
+            s.buffer=buf;fi.type='highpass';fi.frequency.value=7000;
+            g.gain.setValueAtTime(acc?.18:.09,t);g.gain.exponentialRampToValueAtTime(.001,t+.08);
+            s.connect(fi);fi.connect(g);g.connect(masterGain);s.start(t);scheduledNodes.push(s);
+        }
+        function playSnare(t){
+            const o=audioCtx.createOscillator(),og=audioCtx.createGain();
+            o.type='triangle';o.frequency.value=220;
+            og.gain.setValueAtTime(.4,t);og.gain.exponentialRampToValueAtTime(.001,t+.15);
+            o.connect(og);og.connect(masterGain);o.start(t);o.stop(t+.2);
+            const sz=audioCtx.sampleRate*.2,buf=audioCtx.createBuffer(1,sz,audioCtx.sampleRate);
+            const d=buf.getChannelData(0);for(let i=0;i<sz;i++)d[i]=Math.random()*2-1;
+            const s=audioCtx.createBufferSource(),f=audioCtx.createBiquadFilter(),ng=audioCtx.createGain();
+            s.buffer=buf;f.type='bandpass';f.frequency.value=3000;f.Q.value=.8;
+            ng.gain.setValueAtTime(.35,t);ng.gain.exponentialRampToValueAtTime(.001,t+.18);
+            s.connect(f);f.connect(ng);ng.connect(masterGain);s.start(t);scheduledNodes.push(o,s);
+        }
+        function scheduleLoop(t){
+            const ll=BAR*2;
+            for(let bar=0;bar<2;bar++){
+                const b=t+bar*BAR;
+                playKick(b);playKick(b+BEAT*2);playSnare(b+BEAT);playSnare(b+BEAT*3);
+                for(let h=0;h<8;h++)playHat(b+h*BEAT*.5,h%2===0);
             }
-            return impulse;
+            BASS.forEach(([f,bo,db])=>playNote(f,t+bo*BEAT,db*BEAT,'sawtooth',.28,600));
+            MEL.forEach(([f,bo,db])=>playNote(f,t+bo*BEAT,db*BEAT,'square',.12,3500));
+            [N.A3,N.C4,N.E4,N.G4].forEach((f,i)=>playNote(f,t+i*.04,ll,'sine',.07,1200));
+            return ll;
         }
-
-        // Play a single synth note
-        function playNote(freq, startTime, duration, type, gainVal, filterFreq) {
-            const osc  = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            const filter = audioCtx.createBiquadFilter();
-
-            osc.type = type || 'sawtooth';
-            osc.frequency.setValueAtTime(freq, startTime);
-
-            // Slight pitch vibrato for warmth
-            const vibrato = audioCtx.createOscillator();
-            const vibratoGain = audioCtx.createGain();
-            vibrato.frequency.value = 5.5;
-            vibratoGain.gain.value  = 1.2;
-            vibrato.connect(vibratoGain);
-            vibratoGain.connect(osc.frequency);
-            vibrato.start(startTime);
-            vibrato.stop(startTime + duration + 0.1);
-
-            // Low-pass filter for warmth
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(filterFreq || 2200, startTime);
-            filter.Q.value = 2;
-
-            // ADSR envelope
-            gain.gain.setValueAtTime(0, startTime);
-            gain.gain.linearRampToValueAtTime(gainVal, startTime + 0.04);
-            gain.gain.setValueAtTime(gainVal, startTime + duration * 0.6);
-            gain.gain.linearRampToValueAtTime(0, startTime + duration);
-
-            osc.connect(filter);
-            filter.connect(gain);
-            gain.connect(masterGain);
-
-            osc.start(startTime);
-            osc.stop(startTime + duration + 0.05);
-
-            scheduledNodes.push(osc, vibrato);
+        function startMusic(){
+            initAudio();if(audioCtx.state==='suspended')audioCtx.resume();
+            isPlaying=true;let nl=audioCtx.currentTime+.05;
+            function sn(){if(!isPlaying)return;const d=scheduleLoop(nl);nl+=d;loopTimeout=setTimeout(sn,(d-.3)*1000);}
+            sn();updateUI(true);
         }
-
-        // Play kick drum
-        function playKick(startTime) {
-            const osc  = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(160, startTime);
-            osc.frequency.exponentialRampToValueAtTime(40, startTime + 0.08);
-
-            gain.gain.setValueAtTime(0.8, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
-
-            osc.connect(gain);
-            gain.connect(masterGain);
-            osc.start(startTime);
-            osc.stop(startTime + 0.4);
-            scheduledNodes.push(osc);
-        }
-
-        // Play hi-hat (noise burst)
-        function playHat(startTime, accent) {
-            const bufSize = audioCtx.sampleRate * 0.08;
-            const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
-            const data = buf.getChannelData(0);
-            for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
-
-            const src    = audioCtx.createBufferSource();
-            const filter = audioCtx.createBiquadFilter();
-            const gain   = audioCtx.createGain();
-
-            src.buffer = buf;
-            filter.type = 'highpass';
-            filter.frequency.value = 7000;
-
-            gain.gain.setValueAtTime(accent ? 0.18 : 0.09, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
-
-            src.connect(filter);
-            filter.connect(gain);
-            gain.connect(masterGain);
-            src.start(startTime);
-            scheduledNodes.push(src);
-        }
-
-        // Play snare
-        function playSnare(startTime) {
-            // Tone component
-            const osc  = audioCtx.createOscillator();
-            const og   = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.value = 220;
-            og.gain.setValueAtTime(0.4, startTime);
-            og.gain.exponentialRampToValueAtTime(0.001, startTime + 0.15);
-            osc.connect(og); og.connect(masterGain);
-            osc.start(startTime); osc.stop(startTime + 0.2);
-
-            // Noise component
-            const bufSize = audioCtx.sampleRate * 0.2;
-            const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
-            const data = buf.getChannelData(0);
-            for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
-            const src  = audioCtx.createBufferSource();
-            const f    = audioCtx.createBiquadFilter();
-            const ng   = audioCtx.createGain();
-            src.buffer = buf;
-            f.type = 'bandpass'; f.frequency.value = 3000; f.Q.value = 0.8;
-            ng.gain.setValueAtTime(0.35, startTime);
-            ng.gain.exponentialRampToValueAtTime(0.001, startTime + 0.18);
-            src.connect(f); f.connect(ng); ng.connect(masterGain);
-            src.start(startTime);
-
-            scheduledNodes.push(osc, src);
-        }
-
-        // Schedule one full 2-bar loop
-        function scheduleLoop(startTime) {
-            const loopLength = BAR * 2; // 2 bars
-
-            // Drums: kick on beats 1 and 3, snare on 2 and 4
-            for (let bar = 0; bar < 2; bar++) {
-                const b = startTime + bar * BAR;
-                playKick(b);
-                playKick(b + BEAT * 2);
-                playSnare(b + BEAT);
-                playSnare(b + BEAT * 3);
-                // 8th-note hats
-                for (let h = 0; h < 8; h++) {
-                    playHat(b + h * BEAT * 0.5, h % 2 === 0);
-                }
-            }
-
-            // Bass line
-            BASS_PATTERN.forEach(([freq, beatOffset, durBeats]) => {
-                playNote(freq, startTime + beatOffset * BEAT, durBeats * BEAT, 'sawtooth', 0.28, 600);
-            });
-
-            // Melody arpeggio
-            MELODY_PATTERN.forEach(([freq, beatOffset, durBeats]) => {
-                playNote(freq, startTime + beatOffset * BEAT, durBeats * BEAT, 'square', 0.12, 3500);
-            });
-
-            // Pad chord wash (whole notes, low volume)
-            const padChord = [NOTES.A3, NOTES.C4, NOTES.E4, NOTES.G4];
-            padChord.forEach((freq, i) => {
-                playNote(freq, startTime + i * 0.04, loopLength, 'sine', 0.07, 1200);
-            });
-
-            return loopLength;
-        }
-
-        function startMusic() {
-            initAudio();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            isPlaying = true;
-
-            let nextLoop = audioCtx.currentTime + 0.05;
-
-            function scheduleNext() {
-                if (!isPlaying) return;
-                const dur = scheduleLoop(nextLoop);
-                nextLoop += dur;
-                // Re-schedule slightly before the loop ends
-                loopTimeout = setTimeout(scheduleNext, (dur - 0.3) * 1000);
-            }
-
-            scheduleNext();
-            updateUI(true);
-        }
-
-        function stopMusic() {
-            isPlaying = false;
-            if (loopTimeout) clearTimeout(loopTimeout);
-
-            // Fade out master gain then stop all nodes
-            if (masterGain) {
-                masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-                masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
-            }
-
-            setTimeout(() => {
-                scheduledNodes.forEach(n => { try { n.stop(); } catch(e) {} });
-                scheduledNodes = [];
-                if (masterGain) masterGain.gain.setValueAtTime(0.5, audioCtx.currentTime);
-            }, 450);
-
+        function stopMusic(){
+            isPlaying=false;if(loopTimeout)clearTimeout(loopTimeout);
+            if(masterGain){masterGain.gain.setValueAtTime(masterGain.gain.value,audioCtx.currentTime);masterGain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+.4);}
+            setTimeout(()=>{scheduledNodes.forEach(n=>{try{n.stop()}catch(e){}});scheduledNodes=[];if(masterGain)masterGain.gain.setValueAtTime(.5,audioCtx.currentTime);},450);
             updateUI(false);
         }
-
-        function updateUI(playing) {
-            // Update both music buttons (hero + footer)
-            ['musicBtn', 'musicBtn2'].forEach(id => {
-                const btn = document.getElementById(id);
-                if (!btn) return;
-                if (playing) {
+        function updateUI(playing){
+            ['musicBtn','musicBtn2'].forEach(id=>{
+                const btn=document.getElementById(id);if(!btn)return;
+                if(playing){
                     btn.classList.add('playing');
-                    // Preserve eq-bars if present
-                    if (!btn.querySelector('.eq-bars')) {
-                        btn.innerHTML = '⏹ Stop Music <span class="eq-bars"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span>';
-                    } else {
-                        btn.childNodes[0].textContent = '⏹ Stop Music ';
-                    }
-                } else {
+                    if(!btn.querySelector('.eq-bars'))btn.innerHTML='⏹ Stop Music <span class="eq-bars"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span>';
+                    else btn.childNodes[0].textContent='⏹ Stop Music ';
+                }else{
                     btn.classList.remove('playing');
-                    if (!btn.querySelector('.eq-bars')) {
-                        btn.innerHTML = '🎵 Play Music';
-                    } else {
-                        btn.childNodes[0].textContent = '🎵 Play Music';
-                    }
+                    if(!btn.querySelector('.eq-bars'))btn.innerHTML='🎵 Play Music';
+                    else btn.childNodes[0].textContent='🎵 Play Music';
                 }
             });
         }
-
-        // Global toggle function called by onclick
-        window.toggleMusic = function() {
-            if (isPlaying) {
-                stopMusic();
-            } else {
-                startMusic();
-            }
-        };
-
+        window.toggleMusic=function(){if(isPlaying)stopMusic();else startMusic();};
     })();
     </script>
 
     <script>
-  const u = 'karltdunn';
-  const d = 'gmail.com';
-  const el = document.getElementById('emailLink');
-  el.href = 'mailto:' + u + '@' + d;
-</script>
-    
+        const u='karltdunn',d='gmail.com',el=document.getElementById('emailLink');
+        el.href='mailto:'+u+'@'+d;
+    </script>
 </body>
 </html>
