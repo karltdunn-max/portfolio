@@ -65,7 +65,7 @@
     /* ── "Click to play" prompt bubble ── */
     .media-corner-wrap {
       position: absolute;
-      right: 32px;
+      left: 32px;
       bottom: 130px;
       z-index: 10;
       opacity: 0;
@@ -74,7 +74,7 @@
     .corner-label {
       position: absolute;
       bottom: 100%;
-      right: 0;
+      left: 0;
       margin-bottom: 14px;
       white-space: nowrap;
       background: rgba(0, 0, 0, 0.75);
@@ -96,7 +96,7 @@
       content: "";
       position: absolute;
       top: 100%;
-      right: 26px;
+      left: 26px;
       border: 7px solid transparent;
       border-top-color: var(--neon-cyan);
     }
@@ -115,7 +115,7 @@
 
     @media (max-width: 600px) {
       .media-corner-wrap {
-        right: 16px; bottom: 190px;
+        left: 16px; bottom: 190px;
       }
       .media-corner { width: 120px; height: 120px; }
       .corner-label { font-size: 0.68rem; padding: 6px 12px; }
