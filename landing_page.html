@@ -92,7 +92,8 @@
         .cta-secondary { background:transparent; color:#00d4ff; border:2px solid #00d4ff; }
         .cta-secondary:hover { background:rgba(0,212,255,0.1); transform:translateY(-5px); }
 
-        #musicBtn { position:relative; overflow:hidden; }
+        #narrateBtn:hover { background:rgba(0,242,255,0.35); transform:translateY(-3px); box-shadow:0 5px 20px rgba(0,212,255,0.3); }
+        #narrateBtn.playing { background:rgba(0,255,136,0.15); border-color:#00ff88; color:#00ff88; }
         #musicBtn.playing {
             background:rgba(0,212,255,0.15); border-color:#00ff88; color:#00ff88;
             box-shadow:0 0 20px rgba(0,255,136,0.4),0 0 40px rgba(0,255,136,0.2);
@@ -624,6 +625,8 @@
 
     <a href="landing_page.html" style="position:fixed;top:30px;left:30px;padding:15px 30px;background:rgba(0,242,255,0.2);backdrop-filter:blur(10px);border:2px solid rgba(0,242,255,0.5);border-radius:50px;color:white;text-decoration:none;font-weight:600;transition:all 0.3s ease;z-index:1000;">← Back to Portfolio</a>
 
+    <button id="narrateBtn" onclick="playNarration()" style="position:fixed;top:30px;right:30px;padding:15px 30px;background:rgba(0,242,255,0.2);backdrop-filter:blur(10px);border:2px solid rgba(0,242,255,0.5);border-radius:50px;color:white;font-weight:600;font-size:16px;font-family:inherit;cursor:pointer;transition:all 0.3s ease;z-index:1000;">🔊 Narrate</button>
+
     <div style="text-align:center;margin-top:60px;padding-bottom:60px;">
         <a href="Resume_Page.html" class="cta-button cta-primary" style="margin-right:20px;">📄 View Resume</a>
         <button class="cta-button cta-secondary" onclick="toggleMusic()" id="musicBtn2">🎵 Play Music</button>
@@ -730,4 +733,62 @@
                 }
             });
         }
-        window.toggleMusic=function(){if(isPlaying)stopMusic();else s
+        window.toggleMusic=function(){if(isPlaying)stopMusic();else startMusic();};
+    })();
+    </script>
+
+    <!-- VOICE CLIP: tries to autoplay with sound on load (works when this page
+         was reached via a click, e.g. the "View Portfolio" button). Falls back
+         to playing on the visitor's first click/tap/keypress if the browser
+         blocks the autoplay attempt. -->
+    <audio id="voiceClip" preload="auto">
+      <source src="My recording 8.m4a" type="audio/mp4">
+    </audio>
+    <script>
+    (function(){
+        const clip = document.getElementById('voiceClip');
+        const btn  = document.getElementById('narrateBtn');
+        if(!clip) return;
+
+        function setBtnPlaying(playing){
+            if(!btn) return;
+            btn.classList.toggle('playing', playing);
+            btn.innerHTML = playing ? '⏹ Stop' : '🔊 Narrate';
+        }
+
+        window.playNarration = function(){
+            clip.currentTime = 0;
+            clip.play().catch(function(){});
+        };
+
+        clip.addEventListener('play',  function(){ setBtnPlaying(true); });
+        clip.addEventListener('pause', function(){ setBtnPlaying(false); });
+        clip.addEventListener('ended', function(){ setBtnPlaying(false); });
+
+        function tryPlay(){
+            const p = clip.play();
+            if(p !== undefined){
+                p.catch(function(){
+                    const startOnInteract = function(){
+                        clip.play().catch(function(){});
+                        window.removeEventListener('click', startOnInteract);
+                        window.removeEventListener('keydown', startOnInteract);
+                        window.removeEventListener('touchstart', startOnInteract);
+                    };
+                    window.addEventListener('click', startOnInteract, {once:true});
+                    window.addEventListener('keydown', startOnInteract, {once:true});
+                    window.addEventListener('touchstart', startOnInteract, {once:true});
+                });
+            }
+        }
+
+        if(document.readyState === 'complete'){
+            tryPlay();
+        } else {
+            window.addEventListener('load', tryPlay);
+        }
+    })();
+    </script>
+
+</body>
+</html>
