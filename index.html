@@ -39,21 +39,17 @@
       to   { transform: scale(1.06); }
     }
 
-    /* ── Circular video, bottom-right corner ── */
     .media-corner {
-      position: absolute;
-      right: 32px;
-      bottom: 130px;
+      position: relative;
       width: 190px;
       height: 190px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid var(--neon-cyan);
       box-shadow: 0 0 20px var(--border-glow), 0 0 45px rgba(0, 234, 255, 0.25);
-      z-index: 10;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-out forwards 0.6s, cornerPulse 3s infinite ease-in-out 2s;
+      cursor: pointer;
       background: #000;
+      animation: cornerPulse 3s infinite ease-in-out 2s;
     }
     @keyframes cornerPulse {
       0%   { box-shadow: 0 0 20px var(--border-glow), 0 0 45px rgba(0, 234, 255, 0.25); }
@@ -66,11 +62,63 @@
       display: block;
     }
 
+    /* ── "Click to play" prompt bubble ── */
+    .media-corner-wrap {
+      position: absolute;
+      right: 32px;
+      bottom: 130px;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards 0.6s;
+    }
+    .corner-label {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      margin-bottom: 14px;
+      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.75);
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 14px var(--border-glow);
+      opacity: 0;
+      pointer-events: none;
+      animation: fadeIn 1s ease-out forwards 1.4s, labelBob 2.2s ease-in-out infinite 2.4s;
+      transition: opacity 0.4s ease;
+    }
+    .corner-label::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 26px;
+      border: 7px solid transparent;
+      border-top-color: var(--neon-cyan);
+    }
+    @keyframes labelBob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .media-corner-wrap.played .corner-label {
+      opacity: 0 !important;
+      animation: none;
+    }
+    .media-corner.played {
+      cursor: default;
+      animation: fadeIn 1.5s ease-out forwards 0.6s;
+    }
+
     @media (max-width: 600px) {
-      .media-corner {
-        width: 120px; height: 120px;
+      .media-corner-wrap {
         right: 16px; bottom: 190px;
       }
+      .media-corner { width: 120px; height: 120px; }
+      .corner-label { font-size: 0.68rem; padding: 6px 12px; }
     }
 
     /* ── Button bar ── */
@@ -179,8 +227,11 @@
   <div class="hero">
     <img src="skills_demo_banner_v2.png" alt="Portfolio Banner">
 
-    <div class="media-corner">
-      <video id="heroVideo" src="demo_video.mp4" autoplay playsinline></video>
+    <div class="media-corner-wrap" id="cornerWrap">
+      <div class="corner-label">&#128266; Click to hear</div>
+      <div class="media-corner" id="cornerCircle" onclick="playCornerClip()">
+        <video id="heroVideo" src="demo_video.mp4" playsinline preload="auto"></video>
+      </div>
     </div>
 
     <div class="button-bar">
@@ -199,41 +250,23 @@
   </div>
 
   <!-- ================================================================
-       AUTOPLAY-WITH-SOUND HANDLER
-       Tries to play the hero video with sound immediately. If the
-       browser blocks unmuted autoplay (no prior interaction/trust),
-       it falls back to muted autoplay and unmutes on the very first
-       click/tap/keypress anywhere on the page.
+       CORNER VIDEO — click-to-play with sound
+       Sits paused on its first frame until clicked. On click, plays
+       once through with sound, then rests on the last frame until
+       clicked again (which restarts it from the top).
        ================================================================ -->
   <script>
   (function () {
-    const vid = document.getElementById('heroVideo');
+    const vid  = document.getElementById('heroVideo');
+    const wrap = document.getElementById('cornerWrap');
     if (!vid) return;
 
-    function tryUnmutedPlay() {
+    window.playCornerClip = function () {
+      wrap.classList.add('played');
+      vid.currentTime = 0;
       vid.muted = false;
-      const p = vid.play();
-      if (p !== undefined) {
-        p.catch(() => {
-          // Browser blocked unmuted autoplay — fall back to muted,
-          // then unmute on the first user interaction.
-          vid.muted = true;
-          vid.play().catch(() => {});
-          const unmuteOnce = () => {
-            vid.muted = false;
-            vid.play().catch(() => {});
-            window.removeEventListener('click', unmuteOnce);
-            window.removeEventListener('keydown', unmuteOnce);
-            window.removeEventListener('touchstart', unmuteOnce);
-          };
-          window.addEventListener('click', unmuteOnce, { once: true });
-          window.addEventListener('keydown', unmuteOnce, { once: true });
-          window.addEventListener('touchstart', unmuteOnce, { once: true });
-        });
-      }
-    }
-
-    tryUnmutedPlay();
+      vid.play().catch(() => {});
+    };
   })();
   </script>
 
